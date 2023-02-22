@@ -6,8 +6,10 @@ import {
     TouchableOpacity,
     Text,
     TextInput,
+    Alert,
 } from 'react-native';
-import CustomTextInput from '../components/CustomTextInput';
+//import CustomTextInput from '../components/CustomTextInput';
+import auth from '@react-native-firebase/auth';
 
 class LoginScreen extends React.Component {
 
@@ -17,6 +19,16 @@ class LoginScreen extends React.Component {
             email: '',
             password: ''
         }
+    }
+
+    handleSignUp = () => {
+        const { email, password } = this.state;
+
+        auth().createUserWithEmailAndPassword(email, password)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                console.log("email " + user.email);
+            }).catch(error => alert(error.message))
     }
 
     inputText = (placeholder, isSecure, onChangeText, value) => {
@@ -41,8 +53,9 @@ class LoginScreen extends React.Component {
     }
 
     goToHomeScreen = () => {
-        const { navigation } = this.props;
-        navigation.navigate("Home")
+        this.handleSignUp()
+        //const { navigation } = this.props;
+        //navigation.navigate("Home")
     }
 
     setEmail = (email) => {
