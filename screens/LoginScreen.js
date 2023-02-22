@@ -3,23 +3,13 @@ import {
     StyleSheet,
     Text,
     View,
-    TextInput
 } from 'react-native';
+import CustomTextInput from '../components/CustomTextInput';
 
 class LoginScreen extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     inputText = (title, placeholder) => {
-        return <View style={styles.inputContainer}>
-            <Text style={styles.inputText}>{title}</Text>
-            <TextInput
-                style={styles.input}
-                // onChangeText={onChangeText}
-                placeholder={placeholder}
-            />
-        </View>
+        return <CustomTextInput title={title} placeholder={placeholder} />
     }
 
     render = () => {
