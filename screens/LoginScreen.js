@@ -3,6 +3,7 @@ import {
     StyleSheet,
     Text,
     View,
+    Button,
 } from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 
@@ -17,6 +18,7 @@ class LoginScreen extends React.Component {
             <View style={styles.container}>
                 {this.inputText("Enter username", "soniaW")}
                 {this.inputText("Enter password", "password")}
+                <Button title="Login" color={"black"} />
             </View>
         );
     }
@@ -27,22 +29,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         flex: 1,
         padding: 32,
-    },
-    inputContainer: {
-        margin: 8,
-        marginTop: 12,
-        //backgroundColor: "red"
-    },
-    inputText: {
-        fontSize: 18,
-        fontWeight: '500'
-    },
-    input: {
-        height: "auto",
-        marginTop: 8,
-        borderWidth: 1,
-        padding: 10,
-        fontSize: 16,
     },
 })
 
