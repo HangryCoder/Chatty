@@ -5,13 +5,29 @@ import {
     View,
     TouchableOpacity,
     Text,
+    TextInput,
 } from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 
 class LoginScreen extends React.Component {
 
-    inputText = (title, placeholder) => {
-        return <CustomTextInput title={title} placeholder={placeholder} />
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
+    }
+
+    inputText = (placeholder, isSecure, onChangeText, value) => {
+        return <TextInput
+            style={styles.input}
+            placeholderTextColor={"black"}
+            value={value}
+            onChangeText={onChangeText}
+            placeholder={placeholder}
+            secureTextEntry={isSecure}
+        />
     }
 
     loginButton = () => {
@@ -29,12 +45,21 @@ class LoginScreen extends React.Component {
         navigation.navigate("Home")
     }
 
+    setEmail = (email) => {
+        this.setState({ email: email });
+    }
+
+    setPassword = (password) => {
+        this.setState({ password: password });
+    }
+
     render = () => {
+        const { email, password } = this.state;
         return (
             <KeyboardAvoidingView style={styles.container}
                 behavior="padding">
-                {this.inputText("Enter username", "soniaW")}
-                {this.inputText("Enter password", "password")}
+                {this.inputText("Enter email", false, (text) => this.setEmail(text), email)}
+                {this.inputText("Enter password", true, (text) => this.setPassword(text), password)}
                 {this.loginButton()}
             </KeyboardAvoidingView>
         );
@@ -49,7 +74,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         backgroundColor: 'black',
-        width: 200,
+        width: '60%',
         alignSelf: 'center',
         paddingHorizontal: 16,
         paddingVertical: 8,
@@ -60,7 +85,17 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'center',
         fontWeight: '500',
-    }
+    },
+    input: {
+        height: "auto",
+        marginTop: 8,
+        borderWidth: 1,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 8,
+        fontSize: 16,
+        color: "black",
+    },
 })
 
 export default LoginScreen;
