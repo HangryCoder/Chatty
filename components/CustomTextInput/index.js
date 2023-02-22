@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
     },
     inputText: {
         fontSize: 18,
-        fontWeight: '500'
+        fontWeight: '500',
+        color: "black",
     },
     input: {
         height: "auto",
@@ -39,6 +40,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         fontSize: 16,
+        color: "black"
     },
 })
 
