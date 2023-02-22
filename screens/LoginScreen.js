@@ -27,7 +27,17 @@ class LoginScreen extends React.Component {
         auth().createUserWithEmailAndPassword(email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
-                console.log("email " + user.email);
+                console.log("Registered email successfully " + user.email);
+            }).catch(error => alert(error.message))
+    }
+
+    handleLogin = () => {
+        const { email, password } = this.state;
+        auth().signInWithEmailAndPassword(email, password)
+            .then(userCredentials => {
+                const user = userCredentials.user;
+                console.log("Logged in successfully " + user.email);
+                this.goToHomeScreen()
             }).catch(error => alert(error.message))
     }
 
@@ -42,20 +52,19 @@ class LoginScreen extends React.Component {
         />
     }
 
-    loginButton = () => {
+    renderButton = (text, onPress) => {
         return (
             <View>
-                <TouchableOpacity style={styles.buttonContainer} onPress={this.goToHomeScreen}>
-                    <Text style={styles.buttonText}>Login</Text>
+                <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+                    <Text style={styles.buttonText}>{text}</Text>
                 </TouchableOpacity>
             </View>
         )
     }
 
     goToHomeScreen = () => {
-        this.handleSignUp()
-        //const { navigation } = this.props;
-        //navigation.navigate("Home")
+        const { navigation } = this.props;
+        navigation.navigate("Home")
     }
 
     setEmail = (email) => {
@@ -73,7 +82,8 @@ class LoginScreen extends React.Component {
                 behavior="padding">
                 {this.inputText("Enter email", false, (text) => this.setEmail(text), email)}
                 {this.inputText("Enter password", true, (text) => this.setPassword(text), password)}
-                {this.loginButton()}
+                {this.renderButton("Login", this.handleLogin)}
+                {this.renderButton("Register", this.handleSignUp)}
             </KeyboardAvoidingView>
         );
     }
