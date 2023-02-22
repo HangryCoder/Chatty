@@ -5,14 +5,16 @@ import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native'
 class GroupItem extends React.Component {
 
     renderImage = () => {
-        const { icon } = this.props;
+        const { group } = this.props
+        const { icon } = group;
         return (<View style={styles.iconContainer}>
             <View style={styles.icon}></View>
         </View>)
     }
 
     renderTitleAndMembers = () => {
-        const { title, memberCount } = this.props
+        const { group } = this.props
+        const { title, memberCount } = group
 
         return (<View style={styles.textContainer}>
             <Text style={styles.title}>{title}</Text>
@@ -21,8 +23,8 @@ class GroupItem extends React.Component {
     }
 
     renderJoinButton = () => {
-        const { joined } = this.props
-        return (joined ?
+        const { group } = this.props
+        return (group.joined ?
             (<View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.joinButtonContainer}>
                     <Text style={styles.joinText}>Join</Text>
@@ -41,17 +43,7 @@ class GroupItem extends React.Component {
 }
 
 GroupItem.propTypes = {
-    joined: PropTypes.bool,
-    title: PropTypes.string,
-    memberCount: PropTypes.number,
-    icon: PropTypes.string
-}
-
-GroupItem.defaultProps = {
-    joined: true,
-    title: "New Group",
-    memberCount: 0,
-    icon: ""
+    group: PropTypes.object
 }
 
 const styles = StyleSheet.create({
