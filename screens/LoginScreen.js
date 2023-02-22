@@ -1,9 +1,8 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
-    View,
     Button,
+    KeyboardAvoidingView,
 } from 'react-native';
 import CustomTextInput from '../components/CustomTextInput';
 
@@ -13,13 +12,20 @@ class LoginScreen extends React.Component {
         return <CustomTextInput title={title} placeholder={placeholder} />
     }
 
+    goToHomeScreen = () => {
+        const { navigation } = this.props;
+        navigation.navigate("Home")
+    }
+
     render = () => {
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView style={styles.container}
+                behavior="padding"
+            >
                 {this.inputText("Enter username", "soniaW")}
                 {this.inputText("Enter password", "password")}
-                <Button title="Login" color={"black"} />
-            </View>
+                <Button title="Login" color={"black"} onPress={this.goToHomeScreen} />
+            </KeyboardAvoidingView>
         );
     }
 }
