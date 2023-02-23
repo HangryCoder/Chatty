@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import GroupItem from '../components/GroupItem'
 
 class HomeScreen extends React.Component {
@@ -7,6 +7,7 @@ class HomeScreen extends React.Component {
     constructor() {
         super()
         this.state = {
+            searchValue: "",
             data: [
                 {
                     id: 1,
@@ -47,8 +48,30 @@ class HomeScreen extends React.Component {
         }
     }
 
-    renderSearchBar = () => {
+    onChangeText = (text) => {
+        console.log("text " + text)
+    }
 
+    renderSearchBar = () => {
+        return (<View style={{
+            flexDirection: 'row',
+            marginBottom: 16,
+            backgroundColor: '#3D3D3D',
+            borderRadius: 16,
+            paddingVertical: 8,
+            paddingHorizontal: 16,
+            alignItems: 'center'
+        }}>
+            <View style={{ width: 20, height: 20, backgroundColor: 'red' }}></View>
+            <TextInput
+                editable
+                numberOfLines={1}
+                placeholder="Search"
+                onChangeText={text => onChangeText(text)}
+                value={this.state.searchValue}
+                style={{ flex: 1, marginHorizontal: 8, fontSize: 14, color: '#A1A1A1' }}
+            />
+        </View>)
     }
 
     createGroup = () => {
@@ -87,6 +110,7 @@ class HomeScreen extends React.Component {
     render = () => {
         return (
             <View style={styles.container} >
+                {this.renderSearchBar()}
                 {this.renderGroupList()}
                 {this.renderCreateGroupButton()}
             </View>
