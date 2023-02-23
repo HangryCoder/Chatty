@@ -87,6 +87,41 @@ class ChatScreen extends React.Component {
         </View>)
     }
 
+    renderSenderMessage = () => {
+        const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
+
+        return (<View>
+            <Text style={{
+                backgroundColor: '#E6F5FB',
+                borderTopLeftRadius: 16,
+                borderTopRightRadius: 16,
+                borderBottomRightRadius: 0,
+                borderBottomLeftRadius: 16,
+                padding: 16,
+                fontFamily: 'poppins_regular',
+                fontSize: 14,
+                color: '#2A2A2A'
+            }}>{text}</Text>
+            <View style={{
+                flexDirection: 'row',
+                marginTop: 8,
+                justifyContent: 'flex-end'
+            }}>
+                <Text style={{
+                    fontFamily: 'poppins_regular',
+                    fontSize: 14,
+                    color: '#E4E4E4'
+                }}>Me</Text>
+                <View style={{
+                    width: 24,
+                    height: 24,
+                    backgroundColor: 'yellow',
+                    borderRadius: 24,
+                    marginStart: 8
+                }}></View>
+            </View>
+        </View>)
+    }
     render = () => {
         return (
             <View style={styles.container}>
@@ -95,7 +130,8 @@ class ChatScreen extends React.Component {
                     flex: 1
                 }} />
 
-                {this.renderReceiverMessage()}
+                {/* {this.renderReceiverMessage()} */}
+                {this.renderSenderMessage()}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
