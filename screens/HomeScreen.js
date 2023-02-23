@@ -93,21 +93,27 @@ class HomeScreen extends React.Component {
         })
     }
 
+    getNewlyCreatedChat = () => {
+        const users = database().ref('Chats').limitToFirst(1).once('value')
+            .then(snapshot => {
+                console.log('Chat data: ', snapshot.val());
+
+            });
+    }
+
     createNewChat = () => {
         let color = 'rgb(' + (Math.floor(Math.random() * 256))
             + ',' + (Math.floor(Math.random() * 256)) + ','
             + (Math.floor(Math.random() * 256)) + ')';
 
         let chat = {
-            one: {
-                title: "Goa Group",
-                icon: color,
-            }
+            title: "Bangalore Group",
+            icon: color,
         }
 
         database()
             .ref('/Chats')
-            .set(chat)
+            .push(chat)
             .then(() => console.log('Data set.'));
     }
 
