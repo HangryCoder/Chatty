@@ -52,10 +52,42 @@ class ChatScreen extends React.Component {
         </View>)
     }
 
-    render = () => {
-
+    renderReceiverMessage = () => {
         const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
 
+        return (<View>
+            <Text style={{
+                backgroundColor: '#1C1C1C',
+                borderTopLeftRadius: 16,
+                borderTopRightRadius: 16,
+                borderBottomRightRadius: 16,
+                borderBottomLeftRadius: 0,
+                padding: 16,
+                fontFamily: 'poppins_regular',
+                fontSize: 14,
+                color: '#A1A1A1'
+            }}>{text}</Text>
+            <View style={{
+                flexDirection: 'row',
+                marginTop: 8
+            }}>
+                <View style={{
+                    width: 24,
+                    height: 24,
+                    backgroundColor: 'yellow',
+                    borderRadius: 24,
+                    marginEnd: 8
+                }}></View>
+                <Text style={{
+                    fontFamily: 'poppins_regular',
+                    fontSize: 14,
+                    color: '#E4E4E4'
+                }}>Stephen</Text>
+            </View>
+        </View>)
+    }
+
+    render = () => {
         return (
             <View style={styles.container}>
                 <View style={{
@@ -63,37 +95,7 @@ class ChatScreen extends React.Component {
                     flex: 1
                 }} />
 
-                <View>
-                    <Text style={{
-                        backgroundColor: '#1C1C1C',
-                        borderTopLeftRadius: 16,
-                        borderTopRightRadius: 16,
-                        borderBottomRightRadius: 16,
-                        borderBottomLeftRadius: 0,
-                        padding: 16,
-                        fontFamily: 'poppins_regular',
-                        fontSize: 14,
-                        color: '#A1A1A1'
-                    }}>{text}</Text>
-                    <View style={{
-                        flexDirection: 'row',
-                        marginTop: 8
-                    }}>
-                        <View style={{
-                            width: 24,
-                            height: 24,
-                            backgroundColor: 'yellow',
-                            borderRadius: 24,
-                            marginEnd: 8
-                        }}></View>
-                        <Text style={{
-                            fontFamily: 'poppins_regular',
-                            fontSize: 14,
-                            color: '#E4E4E4'
-                        }}>Stephen</Text>
-                    </View>
-                </View>
-
+                {this.renderReceiverMessage()}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
