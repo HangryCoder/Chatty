@@ -27,7 +27,7 @@ class LoginScreen extends React.Component {
 
     goToHomeScreen = () => {
         const { navigation } = this.props;
-        navigation.navigate("Home")
+        navigation.replace("Home")
     }
 
     isUserLoggedIn = async () => {
@@ -99,11 +99,6 @@ class LoginScreen extends React.Component {
         return (
             <CustomButton style={styles.buttonContainer} onPress={onPress} text={text} />
         )
-    }
-
-    goToHomeScreen = () => {
-        const { navigation } = this.props;
-        navigation.navigate("Home")
     }
 
     setUsername = (username) => {
