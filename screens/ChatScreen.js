@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
+import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON } from '../constants';
 
 class ChatScreen extends React.Component {
 
@@ -40,24 +41,59 @@ class ChatScreen extends React.Component {
                 <CustomTextInput
                     style={styles.postMessageInput}
                     value={this.state.message}
-                    placeholder={'Type something'}
+                    placeholder={POST_MESSAGE_PLACEHOLDER}
                     onChangeText={this.setMessage}
                 />
             </View>
             <CustomButton
-                text={'Post'}
+                text={POST_BUTTON}
                 onPress={this.postMessage}
                 style={styles.postMessageButton} />
         </View>)
     }
 
     render = () => {
+
+        const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
+
         return (
             <View style={styles.container}>
                 <View style={{
                     backgroundColor: 'red',
                     flex: 1
                 }} />
+
+                <View>
+                    <Text style={{
+                        backgroundColor: '#1C1C1C',
+                        borderTopLeftRadius: 16,
+                        borderTopRightRadius: 16,
+                        borderBottomRightRadius: 16,
+                        borderBottomLeftRadius: 0,
+                        padding: 16,
+                        fontFamily: 'poppins_regular',
+                        fontSize: 14,
+                        color: '#A1A1A1'
+                    }}>{text}</Text>
+                    <View style={{
+                        flexDirection: 'row',
+                        marginTop: 8
+                    }}>
+                        <View style={{
+                            width: 24,
+                            height: 24,
+                            backgroundColor: 'yellow',
+                            borderRadius: 24,
+                            marginEnd: 8
+                        }}></View>
+                        <Text style={{
+                            fontFamily: 'poppins_regular',
+                            fontSize: 14,
+                            color: '#E4E4E4'
+                        }}>Stephen</Text>
+                    </View>
+                </View>
+
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
