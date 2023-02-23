@@ -1,50 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
 import database from '@react-native-firebase/database';
 import { CHAT_DB } from './database'
-
-const colorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
-
-const dummyData = [
-    {
-        id: 1,
-        title: 'Group 1',
-        memberCount: 10,
-        color: colorCode,
-        joined: false
-    },
-    {
-        id: 2,
-        title: 'Group 2',
-        memberCount: 20,
-        color: colorCode,
-        joined: true
-    },
-    {
-        id: 3,
-        title: 'Group 3',
-        memberCount: 30,
-        color: colorCode,
-        joined: true
-    },
-    {
-        id: 4,
-        title: 'Group 4',
-        memberCount: 40,
-        color: colorCode,
-        joined: false
-    },
-    {
-        id: 5,
-        title: 'Group 5',
-        memberCount: 50,
-        color: colorCode,
-        joined: true
-    },
-]
 
 class HomeScreen extends React.Component {
 
