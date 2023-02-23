@@ -22,13 +22,10 @@ class GroupItem extends React.Component {
         </View>)
     }
 
-    renderJoinButton = () => {
-        const { group } = this.props
-        return (group.joined ?
-            (<View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.joinButtonContainer}>
-                    <Text style={styles.joinText}>Join</Text>
-                </TouchableOpacity></View>) : null)
+    renderArrowIcon = () => {
+        return (<View style={styles.arrowContainer}>
+            <View style={styles.arrowIcon}>
+            </View></View>)
     }
 
     render = () => {
@@ -36,7 +33,7 @@ class GroupItem extends React.Component {
             <View style={styles.container}>
                 {this.renderImage()}
                 {this.renderTitleAndMembers()}
-                {this.renderJoinButton()}
+                {this.renderArrowIcon()}
             </View>
         );
     }
@@ -48,46 +45,42 @@ GroupItem.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        backgroundColor: '#232323',
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 8
+        padding: 16,
+        borderRadius: 16
     },
     textContainer: {
-        flex: 0.65,
+        flex: 0.8,
         flexDirection: 'column',
     },
     title: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '700',
-        color: 'black'
+        color: 'white'
     },
     memberText: {
-        fontSize: 14,
+        fontSize: 12,
         marginTop: 4,
-        color: 'black'
+        color: '#A1A1A1'
     },
     iconContainer: {
         flex: 0.2,
     },
     icon: {
-        width: 50,
-        height: 50,
+        width: 48,
+        height: 48,
         borderRadius: 50,
         backgroundColor: 'yellow'
     },
-    buttonContainer: {
-        flex: 0.15,
-    },
-    joinButtonContainer: {
+    arrowContainer: {
         backgroundColor: 'green',
-        borderRadius: 4,
-        alignItems: 'center',
-        paddingVertical: 8,
     },
-    joinText: {
-        color: 'white',
-    }
+    arrowIcon: {
+        width: 20,
+        height: 20
+    },
 })
 
 export default GroupItem;

@@ -42,8 +42,13 @@ const data = [
 
 class HomeScreen extends React.Component {
 
+    renderItemSeparator = () => {
+        return <View style={styles.itemSeparator} />
+    }
+
     renderGroupList = () => {
         return <FlatList
+            ItemSeparatorComponent={this.renderItemSeparator()}
             data={data}
             renderItem={({ item }) => <GroupItem group={item} />}
             keyExtractor={item => item.id}
@@ -62,7 +67,11 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'pink',
+        backgroundColor: '#2A2A2A',
+        padding: 16
+    },
+    itemSeparator: {
+        height: 12
     }
 })
 
