@@ -35,12 +35,10 @@ class ChatScreen extends React.Component {
     }
 
     renderPostMessage = () => {
-        return (<View style={{
-            flexDirection: 'row', marginTop: 16,
-        }}>
-            <View style={{ flex: 0.8, marginEnd: 8 }}>
+        return (<View style={styles.postMessageContainer}>
+            <View style={styles.postMessageInputContainer}>
                 <CustomTextInput
-                    style={{ paddingStart: 8, height: 53 }}
+                    style={styles.postMessageInput}
                     value={this.state.message}
                     placeholder={'Type something'}
                     onChangeText={this.setMessage}
@@ -49,20 +47,13 @@ class ChatScreen extends React.Component {
             <CustomButton
                 text={'Post'}
                 onPress={this.postMessage}
-                style={{
-                    flex: 0.2,
-                }} />
+                style={styles.postMessageButton} />
         </View>)
     }
 
     render = () => {
         return (
-            <View style={{
-                flex: 1,
-                flexDirection: 'column',
-                padding: 16,
-                backgroundColor: '#2A2A2A'
-            }}>
+            <View style={styles.container}>
                 <View style={{
                     backgroundColor: 'red',
                     flex: 1
@@ -75,7 +66,27 @@ class ChatScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        padding: 16,
+        backgroundColor: '#2A2A2A'
+    },
+    postMessageContainer: {
+        flexDirection: 'row',
+        marginTop: 16,
+    },
+    postMessageInputContainer: {
+        flex: 0.8,
+        marginEnd: 8
+    },
+    postMessageInput: {
+        paddingStart: 8,
+        height: 53
+    },
+    postMessageButton: {
+        flex: 0.2,
+    }
 })
 
 export default ChatScreen;
