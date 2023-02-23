@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, TextInput, Image } from 'react-native';
-import GroupItem from '../components/GroupItem'
+import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
+import GroupItem from '../components/GroupItem';
+import SearchBar from '../components/SearchBar';
 
 const dummyData = [
     {
@@ -66,27 +67,7 @@ class HomeScreen extends React.Component {
     };
 
     renderSearchBar = () => {
-        return (<View style={{
-            flexDirection: 'row',
-            marginBottom: 16,
-            backgroundColor: '#3D3D3D',
-            borderRadius: 16,
-            paddingVertical: 8,
-            paddingHorizontal: 16,
-            alignItems: 'center'
-        }}>
-            <Image source={require('../assets/icons/search.png')} style={{ width: 20, height: 20 }} />
-            <TextInput
-                editable
-                numberOfLines={1}
-                placeholder="Search"
-                onChangeText={text => this.searchFunction(text)}
-                value={this.state.searchValue}
-                style={{
-                    flex: 1, marginHorizontal: 8, fontSize: 14, color: '#A1A1A1', fontFamily: 'poppins_regular'
-                }}
-            />
-        </View>)
+        return (<SearchBar text={this.state.searchValue} onChangeText={this.searchFunction} />)
     }
 
     createGroup = () => {
