@@ -51,21 +51,16 @@ class HomeScreen extends React.Component {
         this.originalData = dummyData
     }
 
-    /* onChangeText = (text) => {
-         console.log("text " + text)
-         this.setState({ searchValue: text })
-     }*/
 
     searchFunction = (text) => {
-        console.log("text " + text)
         if (text.trim() == "") {
-            this.setState({ data: dummyData, searchValue: text });
+            this.setState({ data: this.originalData, searchValue: text });
             return
         }
         const updatedData = this.originalData.filter((item) => {
             const itemData = `${item.title.toUpperCase()})`;
             const searchData = text.toUpperCase();
-            return itemData.startsWith(searchData)//indexOf(searchData) > -1;
+            return itemData.startsWith(searchData)
         });
         this.setState({ filteredData: updatedData, searchValue: text });
     };
