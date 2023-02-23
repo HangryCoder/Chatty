@@ -18,7 +18,7 @@ class GroupItem extends React.Component {
 
         return (<View style={styles.textContainer}>
             <Text style={styles.title}>{title}</Text>
-            <Text style={styles.memberText}>{`${memberCount} members joined`}</Text>
+            {/* <Text style={styles.memberText}>{`${memberCount} members joined`}</Text> */}
         </View>)
     }
 
