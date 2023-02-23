@@ -8,6 +8,7 @@ import {
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import database from '@react-native-firebase/database';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class LoginScreen extends React.Component {
 
@@ -15,6 +16,28 @@ class LoginScreen extends React.Component {
         super(props)
         this.state = {
             username: '',
+        }
+    }
+
+    componentDidMount = () => {
+        if (this.isUserLoggedIn()) {
+            this.goToHomeScreen()
+        }
+    }
+
+    goToHomeScreen = () => {
+        const { navigation } = this.props;
+        navigation.navigate("Home")
+    }
+
+    isUserLoggedIn = async () => {
+        try {
+            const value = await AsyncStorage.getItem('username')
+            if (value !== null) {
+                return true
+            }
+        } catch (e) {
+            return false
         }
     }
 
@@ -26,7 +49,10 @@ class LoginScreen extends React.Component {
             .set({
                 username: username,
             })
-            .then(() => this.goToHomeScreen());
+            .then(() => {
+                this.setUserAsLoggedIn()
+                this.goToHomeScreen()
+            });
     }
 
     handleLogin = () => {
@@ -39,11 +65,25 @@ class LoginScreen extends React.Component {
                 console.log('User data: ', snapshot.val());
                 const user = snapshot.val()
                 if (user) {
+                    this.setUserAsLoggedIn()
                     this.goToHomeScreen()
                 } else {
                     this.signUp()
                 }
             });
+    }
+
+    setUserAsLoggedIn = () => {
+        const { username } = this.state;
+        this.storeData('username', username)
+    }
+
+    storeData = async (key, value) => {
+        try {
+            await AsyncStorage.setItem(key, value)
+        } catch (e) {
+            console.log("Error in saving " + e)
+        }
     }
 
     inputText = (placeholder, onChangeText, value) => {
