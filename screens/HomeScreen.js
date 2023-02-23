@@ -4,6 +4,7 @@ import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
 import database from '@react-native-firebase/database';
+import { CHAT_DB } from './database'
 
 const colorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 
@@ -51,13 +52,28 @@ class HomeScreen extends React.Component {
         super()
         this.state = {
             searchValue: "",
-            filteredData: dummyData
+            filteredData: []
         }
-        this.originalData = dummyData
+        // this.originalData = dummyData//[]
+    }
+
+    componentDidMount = () => {
+        this.getAllChats()
     }
 
     getAllChats = () => {
-
+        database()
+            .ref(CHAT_DB)
+            .orderByValue()
+            .on('value', snapshot => {
+                var array = []
+                Object.entries(snapshot.val()).map(val => array.push({
+                    id: val[0],
+                    chat: val[1]
+                }))
+                this.setState({ filteredData: array })
+                this.originalData = array
+            })
     }
 
 
@@ -79,40 +95,33 @@ class HomeScreen extends React.Component {
     }
 
     //Delete
-    createGroup = () => {
-        let newData = [...this.state.filteredData]
-        newData.push({
-            id: 6,
-            title: 'Group 6',
-            memberCount: 60,
-            color: colorCode,
-            joined: true
-        })
-        this.setState({
-            filteredData: newData
-        })
-    }
-
-    getNewlyCreatedChat = () => {
-        const users = database().ref('Chats').limitToFirst(1).once('value')
-            .then(snapshot => {
-                console.log('Chat data: ', snapshot.val());
-
-            });
-    }
+    // createGroup = () => {
+    //     let newData = [...this.state.filteredData]
+    //     newData.push({
+    //         id: 6,
+    //         title: 'Group 6',
+    //         memberCount: 60,
+    //         color: colorCode,
+    //         joined: true
+    //     })
+    //     this.setState({
+    //         filteredData: newData
+    //     })
+    // }
 
     createNewChat = () => {
+        console.log('create')
         let color = 'rgb(' + (Math.floor(Math.random() * 256))
             + ',' + (Math.floor(Math.random() * 256)) + ','
             + (Math.floor(Math.random() * 256)) + ')';
 
         let chat = {
-            title: "Bangalore Group",
-            icon: color,
+            title: "Mumbai Group",
+            color: color,
         }
 
         database()
-            .ref('/Chats')
+            .ref(CHAT_DB)
             .push(chat)
             .then(() => console.log('Data set.'));
     }
@@ -129,7 +138,7 @@ class HomeScreen extends React.Component {
         return <FlatList
             ItemSeparatorComponent={this.renderItemSeparator()}
             data={this.state.filteredData}
-            renderItem={({ item }) => <GroupItem group={item} />}
+            renderItem={({ item }) => <GroupItem group={item.chat} />}
             keyExtractor={item => item.id}
         />
     }
