@@ -54,7 +54,7 @@ class HomeScreen extends React.Component {
             searchValue: "",
             filteredData: []
         }
-        // this.originalData = dummyData//[]
+        this.originalData = []
     }
 
     componentDidMount = () => {
@@ -83,7 +83,8 @@ class HomeScreen extends React.Component {
             return
         }
         const updatedData = this.originalData.filter((item) => {
-            const itemData = `${item.title.toUpperCase()})`;
+            let chat = item['chat']
+            const itemData = `${chat.title.toUpperCase()})`;
             const searchData = text.toUpperCase();
             return itemData.startsWith(searchData)
         });
@@ -93,21 +94,6 @@ class HomeScreen extends React.Component {
     renderSearchBar = () => {
         return (<SearchBar text={this.state.searchValue} onChangeText={this.searchFunction} />)
     }
-
-    //Delete
-    // createGroup = () => {
-    //     let newData = [...this.state.filteredData]
-    //     newData.push({
-    //         id: 6,
-    //         title: 'Group 6',
-    //         memberCount: 60,
-    //         color: colorCode,
-    //         joined: true
-    //     })
-    //     this.setState({
-    //         filteredData: newData
-    //     })
-    // }
 
     createNewChat = () => {
         console.log('create')
