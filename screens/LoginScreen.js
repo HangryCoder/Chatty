@@ -9,6 +9,7 @@ import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import database from '@react-native-firebase/database';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { USERNAME, LOGIN, WELCOME_SUB_TITLE, WELCOME } from '../constants';
 
 class LoginScreen extends React.Component {
 
@@ -106,14 +107,14 @@ class LoginScreen extends React.Component {
     }
 
     render = () => {
-        const { email, password, username } = this.state;
+        const { username } = this.state;
         return (
             <KeyboardAvoidingView style={styles.container}
                 behavior="padding">
-                <Text style={styles.title}>Welcome</Text>
-                <Text style={styles.subTitle}>Enter your account details</Text>
-                {this.inputText("Username", (text) => this.setUsername(text), username)}
-                {this.renderButton("Login", this.handleLogin)}
+                <Text style={styles.title}>{WELCOME}</Text>
+                <Text style={styles.subTitle}>{WELCOME_SUB_TITLE}</Text>
+                {this.inputText(USERNAME, (text) => this.setUsername(text), username)}
+                {this.renderButton(LOGIN, this.handleLogin)}
             </KeyboardAvoidingView>
         );
     }

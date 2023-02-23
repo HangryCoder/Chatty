@@ -76,6 +76,7 @@ class HomeScreen extends React.Component {
     }
 
     openCreateGroupBottomSheet = () => {
+        this.setState({ groupName: "" })
         this.RBSheet.open()
     }
 

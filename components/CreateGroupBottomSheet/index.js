@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import CustomTextInput from '../CustomTextInput';
 import CustomButton from '../CustomButton';
+import { CREATE_GROUP_TITLE, CREATE_NOW_GROUP_BUTTON, CREATE_GROUP_PLACEHOLDER } from '../../constants';
 
 class CreateGroupBottomSheet extends React.Component {
     render = () => {
@@ -20,15 +21,15 @@ class CreateGroupBottomSheet extends React.Component {
                     }
                 }}
             >
-                <Text style={styles.title}>Create New Group</Text>
+                <Text style={styles.title}>{CREATE_GROUP_TITLE}</Text>
                 <CustomTextInput
                     value={groupTitle}
                     onChangeText={onChangeText}
-                    placeholder={"Enter group name"}
+                    placeholder={CREATE_GROUP_PLACEHOLDER}
                     icon={require('../../assets/icons/group.png')} />
                 <CustomButton
                     style={styles.button}
-                    text={"Create Now"}
+                    text={CREATE_NOW_GROUP_BUTTON}
                     onPress={onPress} />
             </RBSheet>
         );
