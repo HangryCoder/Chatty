@@ -8,6 +8,7 @@ import { CHAT_DB } from './database'
 import RBSheet from "react-native-raw-bottom-sheet";
 import CustomTextInput from '../components/CustomTextInput';
 import FAB from '../components/FAB';
+import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
 
 class HomeScreen extends React.Component {
 
@@ -56,7 +57,7 @@ class HomeScreen extends React.Component {
         return (<SearchBar text={this.state.searchValue} onChangeText={this.searchFunction} />)
     }
 
-    createNewChat = () => {
+    createNewGroup = () => {
         this.closeCreateGroupBottomSheet()
 
         // let color = 'rgb(' + (Math.floor(Math.random() * 256))
@@ -102,33 +103,45 @@ class HomeScreen extends React.Component {
         />
     }
 
+    setGroupName = (text) => {
+        this.setState({ groupName: text })
+    }
+
     renderCreateGroupBottomSheet = () => {
-        return (<RBSheet
-            ref={ref => {
+        return <CreateGroupBottomSheet
+            reference={ref => {
                 this.RBSheet = ref;
             }}
-            customStyles={{
-                container: {
-                    paddingTop: 24,
-                    paddingHorizontal: 16,
-                    backgroundColor: '#232323'
-                }
-            }}
-        >
-            <Text style={{
-                fontFamily: 'poppins_semibold',
-                fontSize: 24,
-                marginBottom: 16
-            }}>Create New Group</Text>
-            <CustomTextInput
-                value={this.state.groupName}
-                placeholder={"Enter group name"}
-                icon={require('../assets/icons/group.png')} />
-            <CustomButton
-                style={{ marginTop: 32 }}
-                text={"Create Now"}
-                onPress={this.createNewChat} />
-        </RBSheet>)
+            onChangeText={this.setGroupName}
+            groupTitle={this.state.groupName}
+            onPress={this.createNewGroup}
+        />
+        // return (<RBSheet
+        //     ref={ref => {
+        //         this.RBSheet = ref;
+        //     }}
+        //     customStyles={{
+        //         container: {
+        //             paddingTop: 24,
+        //             paddingHorizontal: 16,
+        //             backgroundColor: '#232323'
+        //         }
+        //     }}
+        // >
+        //     <Text style={{
+        //         fontFamily: 'poppins_semibold',
+        //         fontSize: 24,
+        //         marginBottom: 16
+        //     }}>Create New Group</Text>
+        //     <CustomTextInput
+        //         value={this.state.groupName}
+        //         placeholder={"Enter group name"}
+        //         icon={require('../assets/icons/group.png')} />
+        //     <CustomButton
+        //         style={{ marginTop: 32 }}
+        //         text={"Create Now"}
+        //         onPress={this.createNewChat} />
+        // </RBSheet>)
     }
 
 
