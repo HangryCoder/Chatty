@@ -19,6 +19,7 @@ class CustomTextInput extends React.Component {
                 value={value}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
+                placeholderTextColor={'#A1A1A1'}
             />
         </View>);
     }
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 8,
         fontFamily: 'poppins_regular',
         color: '#ffffff',
-        placeholderTextColor: '#A1A1A1',
     },
     icon: {
         marginStart: 16,

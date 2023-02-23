@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
+import database from '@react-native-firebase/database';
 
 const colorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
 
@@ -55,6 +56,10 @@ class HomeScreen extends React.Component {
         this.originalData = dummyData
     }
 
+    getAllChats = () => {
+
+    }
+
 
     searchFunction = (text) => {
         if (text.trim() == "") {
@@ -73,6 +78,7 @@ class HomeScreen extends React.Component {
         return (<SearchBar text={this.state.searchValue} onChangeText={this.searchFunction} />)
     }
 
+    //Delete
     createGroup = () => {
         let newData = [...this.state.filteredData]
         newData.push({
@@ -87,8 +93,26 @@ class HomeScreen extends React.Component {
         })
     }
 
+    createNewChat = () => {
+        let color = 'rgb(' + (Math.floor(Math.random() * 256))
+            + ',' + (Math.floor(Math.random() * 256)) + ','
+            + (Math.floor(Math.random() * 256)) + ')';
+
+        let chat = {
+            one: {
+                title: "Goa Group",
+                icon: color,
+            }
+        }
+
+        database()
+            .ref('/Chats')
+            .set(chat)
+            .then(() => console.log('Data set.'));
+    }
+
     renderCreateGroupButton = () => {
-        return <CustomButton text={"Create Group"} onPress={this.createGroup} />
+        return <CustomButton text={"Create Group"} onPress={this.createNewChat} />
     }
 
     renderItemSeparator = () => {
