@@ -1,21 +1,23 @@
 import React from 'react';
 import {
     StyleSheet,
-    Text,
+    Image,
     View,
     TextInput
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 class CustomTextInput extends React.Component {
 
     render = () => {
-        const { title, placeholder } = this.props;
+        const { value, placeholder, style, onChangeText, icon } = this.props;
 
-        return (<View style={styles.container}>
-            <Text style={styles.inputText}>{title}</Text>
+        return (<View style={[styles.container, style]}>
+            <Image style={styles.icon} source={icon} />
             <TextInput
                 style={styles.input}
-                // onChangeText={onChangeText}
+                value={value}
+                onChangeText={onChangeText}
                 placeholder={placeholder}
             />
         </View>);
@@ -23,27 +25,34 @@ class CustomTextInput extends React.Component {
 
 }
 
+CustomTextInput.propTypes = {
+    style: PropTypes.object,
+    onChangeText: PropTypes.func,
+    value: PropTypes.string,
+    icon: PropTypes.func,
+}
+
 const styles = StyleSheet.create({
     container: {
-        margin: 8,
-        marginTop: 12,
-        //backgroundColor: "red"
-    },
-    inputText: {
-        fontSize: 18,
-        fontWeight: '500',
-        color: "black",
+        borderRadius: 16,
+        backgroundColor: '#3D3D3D',
+        flexDirection: 'row',
+        alignItems: 'center'
     },
     input: {
-        height: "auto",
-        marginTop: 8,
-        borderWidth: 1,
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 8,
-        fontSize: 16,
-        color: "black"
+        fontSize: 14,
+        flex: 1,
+        paddingVertical: 16,
+        paddingHorizontal: 8,
+        fontFamily: 'poppins_regular',
+        color: '#ffffff',
+        placeholderTextColor: '#A1A1A1',
     },
+    icon: {
+        marginStart: 16,
+        width: 20,
+        height: 20
+    }
 })
 
 export default CustomTextInput;

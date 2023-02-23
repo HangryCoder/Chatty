@@ -2,16 +2,11 @@ import React from 'react';
 import {
     StyleSheet,
     KeyboardAvoidingView,
-    View,
-    TouchableOpacity,
-    Text,
-    TextInput,
-    Alert,
-    Image,
 } from 'react-native';
 //import CustomTextInput from '../components/CustomTextInput';
 import auth from '@react-native-firebase/auth';
 import CustomButton from '../components/CustomButton';
+import CustomTextInput from '../components/CustomTextInput';
 
 class LoginScreen extends React.Component {
 
@@ -43,37 +38,18 @@ class LoginScreen extends React.Component {
             }).catch(error => alert(error.message))
     }
 
-    inputText = (placeholder, isSecure, onChangeText, value) => {
-        return (<View style={{
-            borderRadius: 16,
-            backgroundColor: '#3D3D3D',
-            flexDirection: 'row',
-            alignItems: 'center'
-        }}>
-            <Image style={{ marginStart: 16, width: 20, height: 20 }}
-                source={require('../assets/icons/search.png')} />
-            <TextInput
-                style={{
-                    fontSize: 14,
-                    paddingVertical: 16,
-                    paddingHorizontal: 8,
-                    fontFamily: 'poppins_regular',
-                    color: '#ffffff',
-                    placeholderTextColor: '#A1A1A1',
-
-                }}
-                placeholderTextColor={"black"}
-                value={value}
-                onChangeText={onChangeText}
-                placeholder={placeholder}
-                secureTextEntry={isSecure}
-            />
-        </View>)
+    inputText = (placeholder, onChangeText, value) => {
+        return (<CustomTextInput
+            style={styles.inputContainer}
+            onChangeText={onChangeText}
+            value={value}
+            placeholder={placeholder}
+            icon={require('../assets/icons/search.png')} />)
     }
 
     renderButton = (text, onPress) => {
         return (
-            <CustomButton onPress={onPress} text={text} />
+            <CustomButton style={styles.buttonContainer} onPress={onPress} text={text} />
         )
     }
 
@@ -95,8 +71,8 @@ class LoginScreen extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container}
                 behavior="padding">
-                {this.inputText("Enter email", false, (text) => this.setEmail(text), email)}
-                {this.inputText("Enter password", true, (text) => this.setPassword(text), password)}
+                {this.inputText("Username", (text) => this.setEmail(text), email)}
+                {this.inputText("Password", (text) => this.setPassword(text), password)}
                 {this.renderButton("Login", this.handleLogin)}
                 {/* {this.renderButton("Register", this.handleSignUp)} */}
             </KeyboardAvoidingView>
@@ -111,28 +87,10 @@ const styles = StyleSheet.create({
         padding: 32,
     },
     buttonContainer: {
-        backgroundColor: 'black',
-        width: '60%',
-        alignSelf: 'center',
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        marginTop: 8,
-        borderRadius: 4
+        marginTop: 32
     },
-    buttonText: {
-        fontSize: 16,
-        textAlign: 'center',
-        fontWeight: '500',
-    },
-    input: {
-        height: "auto",
-        marginTop: 8,
-        borderWidth: 1,
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 8,
-        fontSize: 16,
-        color: "black",
+    inputContainer: {
+        marginTop: 8
     },
 })
 
