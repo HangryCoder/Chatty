@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native'
+import { StyleSheet, View, Image, Text } from 'react-native'
 
 class GroupItem extends React.Component {
 
     renderImage = () => {
         const { group } = this.props
-        const { icon } = group;
+        const { color } = group;
         return (<View style={styles.iconContainer}>
-            <View style={styles.icon}></View>
+            <View style={[styles.icon, { backgroundColor: color }]}></View>
         </View>)
     }
 

@@ -4,40 +4,42 @@ import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
 
+const colorCode = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+
 const dummyData = [
     {
         id: 1,
         title: 'Group 1',
         memberCount: 10,
-        icon: '',
+        color: colorCode,
         joined: false
     },
     {
         id: 2,
         title: 'Group 2',
         memberCount: 20,
-        icon: '',
+        color: colorCode,
         joined: true
     },
     {
         id: 3,
         title: 'Group 3',
         memberCount: 30,
-        icon: '',
+        color: colorCode,
         joined: true
     },
     {
         id: 4,
         title: 'Group 4',
         memberCount: 40,
-        icon: '',
+        color: colorCode,
         joined: false
     },
     {
         id: 5,
         title: 'Group 5',
         memberCount: 50,
-        icon: '',
+        color: colorCode,
         joined: true
     },
 ]
@@ -77,7 +79,7 @@ class HomeScreen extends React.Component {
             id: 6,
             title: 'Group 6',
             memberCount: 60,
-            icon: '',
+            color: colorCode,
             joined: true
         })
         this.setState({
