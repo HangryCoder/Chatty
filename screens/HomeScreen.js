@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
-import CustomButton from '../components/CustomButton';
 import database from '@react-native-firebase/database';
 import { CHAT_DB } from './database'
-import RBSheet from "react-native-raw-bottom-sheet";
-import CustomTextInput from '../components/CustomTextInput';
 import FAB from '../components/FAB';
 import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
 
@@ -58,24 +55,24 @@ class HomeScreen extends React.Component {
     }
 
     createNewGroup = () => {
-        this.closeCreateGroupBottomSheet()
+        const { groupName } = this.state
+        if (!groupName) return
 
-        // let color = 'rgb(' + (Math.floor(Math.random() * 256))
-        //     + ',' + (Math.floor(Math.random() * 256)) + ','
-        //     + (Math.floor(Math.random() * 256)) + ')';
+        let color = 'rgb(' + (Math.floor(Math.random() * 256))
+            + ',' + (Math.floor(Math.random() * 256)) + ','
+            + (Math.floor(Math.random() * 256)) + ')';
 
-        // let chat = {
-        //     title: "Mumbai Group",
-        //     color: color,
-        // }
+        let chat = {
+            title: groupName,
+            color: color,
+        }
 
-        // database()
-        //     .ref(CHAT_DB)
-        //     .push(chat)
-        //     .then(() => {
-        //         console.log('Data set.')
-        //         this.closeCreateGroupBottomSheet()
-        //     });
+        database()
+            .ref(CHAT_DB)
+            .push(chat)
+            .then(() => {
+                this.closeCreateGroupBottomSheet()
+            });
     }
 
     openCreateGroupBottomSheet = () => {
@@ -116,32 +113,6 @@ class HomeScreen extends React.Component {
             groupTitle={this.state.groupName}
             onPress={this.createNewGroup}
         />
-        // return (<RBSheet
-        //     ref={ref => {
-        //         this.RBSheet = ref;
-        //     }}
-        //     customStyles={{
-        //         container: {
-        //             paddingTop: 24,
-        //             paddingHorizontal: 16,
-        //             backgroundColor: '#232323'
-        //         }
-        //     }}
-        // >
-        //     <Text style={{
-        //         fontFamily: 'poppins_semibold',
-        //         fontSize: 24,
-        //         marginBottom: 16
-        //     }}>Create New Group</Text>
-        //     <CustomTextInput
-        //         value={this.state.groupName}
-        //         placeholder={"Enter group name"}
-        //         icon={require('../assets/icons/group.png')} />
-        //     <CustomButton
-        //         style={{ marginTop: 32 }}
-        //         text={"Create Now"}
-        //         onPress={this.createNewChat} />
-        // </RBSheet>)
     }
 
 
