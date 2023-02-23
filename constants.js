@@ -1,5 +1,6 @@
 
 
+export const ALL_GROUPS = "All Groups"
 export const LOGIN = "Login"
 export const USERNAME = "Username"
 export const WELCOME = "Welcome"

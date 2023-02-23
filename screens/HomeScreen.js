@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import database from '@react-native-firebase/database';
@@ -38,7 +38,6 @@ class HomeScreen extends React.Component {
                 this.originalData = array
             })
     }
-
 
     searchFunction = (text) => {
         const updatedData = this.originalData.filter((item) => {
@@ -116,11 +115,18 @@ class HomeScreen extends React.Component {
         />
     }
 
-
+    renderToolbar = () => {
+        return <Text style={{
+            fontFamily: 'poppins_semibold',
+            fontSize: 24,
+            paddingBottom: 16
+        }}>All Groups</Text>
+    }
 
     render = () => {
         return (
-            <View style={styles.container} >
+            <View style={styles.container}>
+                {/* {this.renderToolbar()} */}
                 {this.renderSearchBar()}
                 {this.renderGroupList()}
                 {this.renderCreateGroupButton()}
