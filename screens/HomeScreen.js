@@ -87,7 +87,9 @@ class HomeScreen extends React.Component {
                 placeholder="Search"
                 onChangeText={text => this.searchFunction(text)}
                 value={this.state.searchValue}
-                style={{ flex: 1, marginHorizontal: 8, fontSize: 14, color: '#A1A1A1' }}
+                style={{
+                    flex: 1, marginHorizontal: 8, fontSize: 14, color: '#A1A1A1', fontFamily: 'poppins_regular'
+                }}
             />
         </View>)
     }

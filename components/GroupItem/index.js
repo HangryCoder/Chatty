@@ -57,13 +57,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 16,
-        fontWeight: '700',
-        color: 'white'
+        color: 'white',
+        fontFamily: 'poppins_semibold'
     },
     memberText: {
         fontSize: 12,
         marginTop: 4,
-        color: '#A1A1A1'
+        color: '#A1A1A1',
+        fontFamily: 'poppins_regular'
     },
     iconContainer: {
         flex: 0.2,
