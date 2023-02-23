@@ -78,10 +78,6 @@ class HomeScreen extends React.Component {
 
 
     searchFunction = (text) => {
-        if (text.trim() == "") {
-            this.setState({ data: this.originalData, searchValue: text });
-            return
-        }
         const updatedData = this.originalData.filter((item) => {
             let chat = item['chat']
             const itemData = `${chat.title.toUpperCase()})`;
