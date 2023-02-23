@@ -7,9 +7,11 @@ import {
     Text,
     TextInput,
     Alert,
+    Image,
 } from 'react-native';
 //import CustomTextInput from '../components/CustomTextInput';
 import auth from '@react-native-firebase/auth';
+import CustomButton from '../components/CustomButton';
 
 class LoginScreen extends React.Component {
 
@@ -42,23 +44,36 @@ class LoginScreen extends React.Component {
     }
 
     inputText = (placeholder, isSecure, onChangeText, value) => {
-        return <TextInput
-            style={styles.input}
-            placeholderTextColor={"black"}
-            value={value}
-            onChangeText={onChangeText}
-            placeholder={placeholder}
-            secureTextEntry={isSecure}
-        />
+        return (<View style={{
+            borderRadius: 16,
+            backgroundColor: '#3D3D3D',
+            flexDirection: 'row',
+            alignItems: 'center'
+        }}>
+            <Image style={{ marginStart: 16, width: 20, height: 20 }}
+                source={require('../assets/icons/search.png')} />
+            <TextInput
+                style={{
+                    fontSize: 14,
+                    paddingVertical: 16,
+                    paddingHorizontal: 8,
+                    fontFamily: 'poppins_regular',
+                    color: '#ffffff',
+                    placeholderTextColor: '#A1A1A1',
+
+                }}
+                placeholderTextColor={"black"}
+                value={value}
+                onChangeText={onChangeText}
+                placeholder={placeholder}
+                secureTextEntry={isSecure}
+            />
+        </View>)
     }
 
     renderButton = (text, onPress) => {
         return (
-            <View>
-                <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-                    <Text style={styles.buttonText}>{text}</Text>
-                </TouchableOpacity>
-            </View>
+            <CustomButton onPress={onPress} text={text} />
         )
     }
 
@@ -83,7 +98,7 @@ class LoginScreen extends React.Component {
                 {this.inputText("Enter email", false, (text) => this.setEmail(text), email)}
                 {this.inputText("Enter password", true, (text) => this.setPassword(text), password)}
                 {this.renderButton("Login", this.handleLogin)}
-                {this.renderButton("Register", this.handleSignUp)}
+                {/* {this.renderButton("Register", this.handleSignUp)} */}
             </KeyboardAvoidingView>
         );
     }
@@ -91,7 +106,7 @@ class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "white",
+        backgroundColor: "#2A2A2A",
         flex: 1,
         padding: 32,
     },
