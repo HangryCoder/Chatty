@@ -7,6 +7,7 @@ import database from '@react-native-firebase/database';
 import { CHAT_DB } from './database'
 import RBSheet from "react-native-raw-bottom-sheet";
 import CustomTextInput from '../components/CustomTextInput';
+import FAB from '../components/FAB';
 
 class HomeScreen extends React.Component {
 
@@ -85,21 +86,7 @@ class HomeScreen extends React.Component {
     }
 
     renderCreateGroupButton = () => {
-        return (<TouchableOpacity
-            style={{
-                backgroundColor: '#874FFF',
-                width: 50,
-                height: 50,
-                borderRadius: 50,
-                alignSelf: 'flex-end',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}
-            onPress={this.openCreateGroupBottomSheet} >
-            <Image
-                style={{ width: 24, height: 24 }}
-                source={require('../assets/icons/plus.png')} />
-        </TouchableOpacity>)
+        return <FAB onPress={this.openCreateGroupBottomSheet} />
     }
 
     renderItemSeparator = () => {
