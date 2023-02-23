@@ -2,6 +2,7 @@ import React from 'react';
 import {
     StyleSheet,
     KeyboardAvoidingView,
+    Text,
 } from 'react-native';
 //import CustomTextInput from '../components/CustomTextInput';
 import auth from '@react-native-firebase/auth';
@@ -71,6 +72,8 @@ class LoginScreen extends React.Component {
         return (
             <KeyboardAvoidingView style={styles.container}
                 behavior="padding">
+                <Text style={styles.title}>Welcome</Text>
+                <Text style={styles.subTitle}>Enter your account details</Text>
                 {this.inputText("Username", (text) => this.setEmail(text), email)}
                 {this.inputText("Password", (text) => this.setPassword(text), password)}
                 {this.renderButton("Login", this.handleLogin)}
@@ -84,7 +87,17 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: "#2A2A2A",
         flex: 1,
-        padding: 32,
+        paddingHorizontal: 16,
+    },
+    title: {
+        fontFamily: 'poppins_semibold',
+        fontSize: 32,
+        marginTop: 48,
+    },
+    subTitle: {
+        fontFamily: 'poppins_regular',
+        fontSize: 14,
+        marginBottom: 48,
     },
     buttonContainer: {
         marginTop: 32
