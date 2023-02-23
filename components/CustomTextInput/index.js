@@ -13,7 +13,7 @@ class CustomTextInput extends React.Component {
         const { value, placeholder, style, onChangeText, icon } = this.props;
 
         return (<View style={[styles.container, style]}>
-            {/* <Image style={styles.icon} source={icon} /> */}
+            <Image style={styles.icon} source={icon} />
             <TextInput
                 style={styles.input}
                 value={value}
