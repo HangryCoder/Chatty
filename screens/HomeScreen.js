@@ -85,8 +85,13 @@ class HomeScreen extends React.Component {
     }
 
     renderCreateGroupButton = () => {
-        return (<TouchableOpacity onPress={this.createGroup}>
-            <Text>Create Group</Text>
+        return (<TouchableOpacity
+            style={{
+                height: 53, borderRadius: 16, backgroundColor: '#874FFF',
+                alignItems: 'center', justifyContent: 'center'
+            }}
+            onPress={this.createGroup}>
+            <Text style={{ fontFamily: 'poppins_semibold', fontSize: 14 }}>Create Group</Text>
         </TouchableOpacity>)
     }
 
