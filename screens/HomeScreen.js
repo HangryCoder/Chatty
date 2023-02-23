@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Text, TouchableOpacity, Image } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import CustomButton from '../components/CustomButton';
@@ -56,7 +56,8 @@ class HomeScreen extends React.Component {
     }
 
     createNewChat = () => {
-        this.openCreateGroupBottomSheet()
+        this.closeCreateGroupBottomSheet()
+
         // let color = 'rgb(' + (Math.floor(Math.random() * 256))
         //     + ',' + (Math.floor(Math.random() * 256)) + ','
         //     + (Math.floor(Math.random() * 256)) + ')';
@@ -69,15 +70,36 @@ class HomeScreen extends React.Component {
         // database()
         //     .ref(CHAT_DB)
         //     .push(chat)
-        //     .then(() => console.log('Data set.'));
+        //     .then(() => {
+        //         console.log('Data set.')
+        //         this.closeCreateGroupBottomSheet()
+        //     });
     }
 
     openCreateGroupBottomSheet = () => {
         this.RBSheet.open()
     }
 
+    closeCreateGroupBottomSheet = () => {
+        this.RBSheet.close()
+    }
+
     renderCreateGroupButton = () => {
-        return <CustomButton text={"Create Group"} onPress={this.createNewChat} />
+        return (<TouchableOpacity
+            style={{
+                backgroundColor: '#874FFF',
+                width: 50,
+                height: 50,
+                borderRadius: 50,
+                alignSelf: 'flex-end',
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}
+            onPress={this.openCreateGroupBottomSheet} >
+            <Image
+                style={{ width: 24, height: 24 }}
+                source={require('../assets/icons/plus.png')} />
+        </TouchableOpacity>)
     }
 
     renderItemSeparator = () => {
