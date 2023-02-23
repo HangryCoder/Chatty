@@ -4,39 +4,46 @@ import {
     KeyboardAvoidingView,
     Text,
 } from 'react-native';
-//import CustomTextInput from '../components/CustomTextInput';
-import auth from '@react-native-firebase/auth';
+//import auth from '@react-native-firebase/auth';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
+import database from '@react-native-firebase/database';
 
 class LoginScreen extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
-            password: ''
+            username: '',
         }
     }
 
-    handleSignUp = () => {
-        const { email, password } = this.state;
+    signUp = () => {
+        const { username } = this.state;
 
-        auth().createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log("Registered email successfully " + user.email);
-            }).catch(error => alert(error.message))
+        database()
+            .ref(`/User/${username}`)
+            .set({
+                username: username,
+            })
+            .then(() => this.goToHomeScreen());
     }
 
     handleLogin = () => {
-        const { email, password } = this.state;
-        auth().signInWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log("Logged in successfully " + user.email);
-                this.goToHomeScreen()
-            }).catch(error => alert(error.message))
+        const { username } = this.state;
+
+        database()
+            .ref(`/User/${username}`)
+            .once('value')
+            .then(snapshot => {
+                console.log('User data: ', snapshot.val());
+                const user = snapshot.val()
+                if (user) {
+                    this.goToHomeScreen()
+                } else {
+                    this.signUp()
+                }
+            });
     }
 
     inputText = (placeholder, onChangeText, value) => {
@@ -59,25 +66,19 @@ class LoginScreen extends React.Component {
         navigation.navigate("Home")
     }
 
-    setEmail = (email) => {
-        this.setState({ email: email });
-    }
-
-    setPassword = (password) => {
-        this.setState({ password: password });
+    setUsername = (username) => {
+        this.setState({ username: username });
     }
 
     render = () => {
-        const { email, password } = this.state;
+        const { email, password, username } = this.state;
         return (
             <KeyboardAvoidingView style={styles.container}
                 behavior="padding">
                 <Text style={styles.title}>Welcome</Text>
                 <Text style={styles.subTitle}>Enter your account details</Text>
-                {this.inputText("Username", (text) => this.setEmail(text), email)}
-                {this.inputText("Password", (text) => this.setPassword(text), password)}
+                {this.inputText("Username", (text) => this.setUsername(text), username)}
                 {this.renderButton("Login", this.handleLogin)}
-                {/* {this.renderButton("Register", this.handleSignUp)} */}
             </KeyboardAvoidingView>
         );
     }
