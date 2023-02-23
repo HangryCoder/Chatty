@@ -23,9 +23,9 @@ class GroupItem extends React.Component {
     }
 
     renderArrowIcon = () => {
-        return (<View style={styles.arrowContainer}>
-            <View style={styles.arrowIcon}>
-            </View></View>)
+        return (<Image
+            source={require('../../assets/icons/arrow-right.png')}
+            style={styles.arrowIcon} />)
     }
 
     render = () => {
@@ -73,9 +73,6 @@ const styles = StyleSheet.create({
         height: 48,
         borderRadius: 50,
         backgroundColor: 'yellow'
-    },
-    arrowContainer: {
-        backgroundColor: 'green',
     },
     arrowIcon: {
         width: 20,

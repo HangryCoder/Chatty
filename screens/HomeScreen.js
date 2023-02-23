@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity, TextInput } from 'react-native';
+import { StyleSheet, View, Text, FlatList, TouchableOpacity, TextInput, Image } from 'react-native';
 import GroupItem from '../components/GroupItem'
 
 const dummyData = [
@@ -80,7 +80,7 @@ class HomeScreen extends React.Component {
             paddingHorizontal: 16,
             alignItems: 'center'
         }}>
-            <View style={{ width: 20, height: 20, backgroundColor: 'red' }}></View>
+            <Image source={require('../assets/icons/search.png')} style={{ width: 20, height: 20 }} />
             <TextInput
                 editable
                 numberOfLines={1}
