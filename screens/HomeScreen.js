@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
+import CustomButton from '../components/CustomButton';
 
 const dummyData = [
     {
@@ -85,14 +86,7 @@ class HomeScreen extends React.Component {
     }
 
     renderCreateGroupButton = () => {
-        return (<TouchableOpacity
-            style={{
-                height: 53, borderRadius: 16, backgroundColor: '#874FFF',
-                alignItems: 'center', justifyContent: 'center'
-            }}
-            onPress={this.createGroup}>
-            <Text style={{ fontFamily: 'poppins_semibold', fontSize: 14 }}>Create Group</Text>
-        </TouchableOpacity>)
+        return <CustomButton text={"Create Group"} onPress={this.createGroup} />
     }
 
     renderItemSeparator = () => {
