@@ -5,6 +5,8 @@ import CustomTextInput from '../components/CustomTextInput';
 import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
 import RecipientMessageItem from '../components/RecipientMessageItem';
 import SenderMessageItem from '../components/SenderMessageItem';
+import database from '@react-native-firebase/database';
+import { CHAT_DB, MEMBERS_DB } from '../database'
 
 const color = 'rgb(' + (Math.floor(Math.random() * 256))
     + ',' + (Math.floor(Math.random() * 256)) + ','
@@ -67,7 +69,13 @@ class ChatScreen extends React.Component {
     }
 
     joinGroup = () => {
-
+        database()
+            .ref(`${MEMBERS_DB}/${this.groupId}`)
+            .update({
+                [this.username]: true
+            }).then(() => {
+                console.log('User joined')
+            })
     }
 
     setMessage = (text) => {
@@ -124,8 +132,8 @@ class ChatScreen extends React.Component {
         return (
             <View style={styles.container}>
                 {this.renderChatList()}
-                {/* {this.renderJoinGroupButton()} */}
-                {this.renderPostMessage()}
+                {this.renderJoinGroupButton()}
+                {/* {this.renderPostMessage()} */}
             </View>
         );
     }
