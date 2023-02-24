@@ -143,30 +143,15 @@ class ChatScreen extends React.Component {
     }
 
     renderToolbar = () => {
-        return <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            backgroundColor: '#232323',
-            padding: 16,
-        }}>
+        return <View style={styles.toolbarContainer}>
             <TouchableOpacity onPress={this.onBackPress}>
                 <Image
                     source={require('../assets/icons/left-arrow.png')}
-                    style={{ width: 24, height: 24, marginRight: 8 }}
+                    style={styles.backButton}
                 />
             </TouchableOpacity>
-            <View style={{
-                backgroundColor: 'red',
-                borderRadius: 50,
-                width: 48,
-                height: 48,
-                marginRight: 8
-            }} />
-            <Text style={{
-                fontFamily: 'poppins_semibold',
-                fontSize: 24,
-                flex: 1,
-            }}>Group name</Text>
+            <View style={styles.groupIcon} />
+            <Text style={styles.groupName}>Group name</Text>
         </View>
     }
 
@@ -213,6 +198,29 @@ const styles = StyleSheet.create({
     },
     joinGroupButton: {
         margin: 16,
+    },
+    toolbarContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#232323',
+        padding: 16,
+    },
+    backButton: {
+        width: 24,
+        height: 24,
+        marginRight: 8
+    },
+    groupIcon: {
+        backgroundColor: 'red',
+        borderRadius: 50,
+        width: 48,
+        height: 48,
+        marginRight: 8
+    },
+    groupName: {
+        fontFamily: 'poppins_semibold',
+        fontSize: 24,
+        flex: 1,
     }
 })
 
