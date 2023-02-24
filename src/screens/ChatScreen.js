@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image, Keyboard } from 'react-native';
-import CustomButton from '../components/CustomButton';
-import CustomTextInput from '../components/CustomTextInput';
-import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
-import RecipientMessageItem from '../components/RecipientMessageItem';
-import SenderMessageItem from '../components/SenderMessageItem';
+import CustomButton from '../../src/components/CustomButton';
+import CustomTextInput from '../../src/components/CustomTextInput';
+import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../utils/constants';
+import RecipientMessageItem from '../../src/components/RecipientMessageItem';
+import SenderMessageItem from '../../src/components/SenderMessageItem';
 import database from '@react-native-firebase/database';
-import { MEMBERS_DB, MESSAGES_DB } from '../database'
+import { MEMBERS_DB, MESSAGES_DB } from '../../database'
 
 class ChatScreen extends React.Component {
 
@@ -157,7 +157,7 @@ class ChatScreen extends React.Component {
         return <View style={styles.toolbarContainer}>
             <TouchableOpacity onPress={this.onBackPress}>
                 <Image
-                    source={require('../assets/icons/left-arrow.png')}
+                    source={require('../../assets/icons/left-arrow.png')}
                     style={styles.backButton}
                 />
             </TouchableOpacity>

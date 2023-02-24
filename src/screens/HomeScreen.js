@@ -1,13 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, Text, Image, TouchableOpacity } from 'react-native';
-import GroupItem from '../components/GroupItem';
-import SearchBar from '../components/SearchBar';
+import GroupItem from '../../src/components/GroupItem';
+import SearchBar from '../../src/components/SearchBar';
 import database from '@react-native-firebase/database';
-import { CHAT_DB } from '../database'
-import FAB from '../components/FAB';
-import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
-import LocalStorage from '../localStorage'
-import { USERNAME_KEY, ALL_GROUPS } from '../constants';
+import { CHAT_DB } from '../../database'
+import FAB from '../../src/components/FAB';
+import CreateGroupBottomSheet from '../../src/components/CreateGroupBottomSheet';
+import LocalStorage from '../utils/LocalStorage'
+import { USERNAME_KEY, ALL_GROUPS } from '../utils/constants';
 
 class HomeScreen extends React.Component {
 
@@ -151,7 +151,7 @@ class HomeScreen extends React.Component {
             <Text style={styles.toolbarName}>{ALL_GROUPS}</Text>
             <TouchableOpacity onPress={this.logout}>
                 <Image
-                    source={require('../assets/icons/log-out.png')}
+                    source={require('../../assets/icons/log-out.png')}
                     style={styles.logout}
                 />
             </TouchableOpacity>

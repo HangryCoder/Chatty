@@ -24,7 +24,7 @@ class GroupItem extends React.Component {
 
     renderArrowIcon = () => {
         return (<Image
-            source={require('../../assets/icons/arrow-right.png')}
+            source={require('../../../assets/icons/arrow-right.png')}
             style={styles.arrowIcon} />)
     }
 

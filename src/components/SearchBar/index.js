@@ -2,7 +2,7 @@ import React from 'react';
 import { View, TextInput, Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
-const searchIcon = '../../assets/icons/search.png'
+const searchIcon = '../../../assets/icons/search.png'
 
 class SearchBar extends React.Component {
 
