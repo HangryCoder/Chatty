@@ -32,7 +32,7 @@ class HomeScreen extends React.Component {
             .orderByValue()
             .on('value', snapshot => {
                 var array = []
-                Object.entries(snapshot.val()).map(val => array.push({
+                Object.entries(snapshot.val()).map(val => array.unshift({
                     id: val[0],
                     chat: val[1]
                 }))
