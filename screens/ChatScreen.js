@@ -18,9 +18,11 @@ class ChatScreen extends React.Component {
             isJoined: false
         }
 
-        const { groupId, username } = props.route.params
+        const { groupId, username, groupName, groupColor } = props.route.params
         this.groupId = groupId
         this.username = username
+        this.groupName = groupName
+        this.groupColor = groupColor
     }
 
     componentDidMount = () => {
@@ -150,8 +152,8 @@ class ChatScreen extends React.Component {
                     style={styles.backButton}
                 />
             </TouchableOpacity>
-            <View style={styles.groupIcon} />
-            <Text style={styles.groupName}>Group name</Text>
+            <View style={[styles.groupIcon, { backgroundColor: this.groupColor }]} />
+            <Text style={styles.groupName}>{this.groupName}</Text>
         </View>
     }
 

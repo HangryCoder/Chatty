@@ -109,7 +109,9 @@ class HomeScreen extends React.Component {
         this.getUsername().then((username) =>
             navigation.navigate("Chat", {
                 groupId: item.id,
-                username: username
+                username: username,
+                groupName: item.chat.title,
+                groupColor: item.chat.color
             })
         )
     }
