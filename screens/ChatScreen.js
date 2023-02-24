@@ -203,7 +203,8 @@ const styles = StyleSheet.create({
         height: 16
     },
     chatList: {
-        padding: 16,
+        paddingHorizontal: 16,
+        paddingBottom: 32
     },
     joinGroupButton: {
         margin: 16,
@@ -213,6 +214,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#232323',
         padding: 16,
+        marginBottom: 16,
     },
     backButton: {
         width: 24,
