@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
@@ -124,6 +124,7 @@ class ChatScreen extends React.Component {
 
     renderChatList = () => {
         return <FlatList
+            style={styles.chatList}
             ItemSeparatorComponent={this.renderItemSeparator()}
             data={this.state.chat}
             renderItem={({ item }) => {
@@ -138,10 +139,39 @@ class ChatScreen extends React.Component {
         />
     }
 
+    renderToolbar = () => {
+        return <View style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: '#232323',
+            padding: 16,
+        }}>
+            <TouchableOpacity onPress={this.logout}>
+                <Image
+                    source={require('../assets/icons/left-arrow.png')}
+                    style={{ width: 24, height: 24, marginRight: 8 }}
+                />
+            </TouchableOpacity>
+            <View style={{
+                backgroundColor: 'red',
+                borderRadius: 50,
+                width: 48,
+                height: 48,
+                marginRight: 8
+            }} />
+            <Text style={{
+                fontFamily: 'poppins_semibold',
+                fontSize: 24,
+                flex: 1,
+            }}>Group name</Text>
+        </View>
+    }
+
     render = () => {
         const { isJoined } = this.state
         return (
             <View style={styles.container}>
+                {this.renderToolbar()}
                 {this.renderChatList()}
                 {isJoined ? this.renderPostMessage() : this.renderJoinGroupButton()}
             </View>
@@ -153,7 +183,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        padding: 16,
         backgroundColor: '#2A2A2A'
     },
     postMessageContainer: {
@@ -173,6 +202,9 @@ const styles = StyleSheet.create({
     },
     itemSeparator: {
         height: 16
+    },
+    chatList: {
+        padding: 16
     }
 })
 
