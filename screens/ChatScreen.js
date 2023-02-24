@@ -49,7 +49,18 @@ class ChatScreen extends React.Component {
     }
 
     postMessage = () => {
+        const message = this.state.message
+        let newMessage = {
+            id: 5,
+            message: message,
+            author: 'Sonia',
+            color: color
+        }
 
+        let array = [...this.state.chat]
+        array.push(newMessage)
+
+        this.setState({ chat: array, message: '' })
     }
 
     joinGroup = () => {
@@ -86,19 +97,6 @@ class ChatScreen extends React.Component {
                 style={styles.postMessageButton} />
         </View>)
     }
-
-    // renderReceiverMessage = () => {
-    //     const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-    //     const chat = { message: text, color: '', author: 'Stephen' }
-    //     return <RecipientMessageItem chat={chat} />
-    // }
-
-    // renderSenderMessage = () => {
-    //     const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-    //     const chat = { message: text, color: '', author: 'Me' }
-
-    //     return <SenderMessageItem chat={chat} />
-    // }
 
     renderItemSeparator = () => {
         return <View style={styles.itemSeparator} />
