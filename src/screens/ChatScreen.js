@@ -6,7 +6,7 @@ import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../utils/cons
 import RecipientMessageItem from '../../src/components/RecipientMessageItem';
 import SenderMessageItem from '../../src/components/SenderMessageItem';
 import database from '@react-native-firebase/database';
-import { MEMBERS_DB, MESSAGES_DB } from '../../database'
+import { MEMBERS_DB, MESSAGES_DB } from '../utils/database'
 
 class ChatScreen extends React.Component {
 

@@ -3,7 +3,7 @@ import { StyleSheet, View, FlatList, Text, Image, TouchableOpacity } from 'react
 import GroupItem from '../../src/components/GroupItem';
 import SearchBar from '../../src/components/SearchBar';
 import database from '@react-native-firebase/database';
-import { CHAT_DB } from '../../database'
+import { CHAT_DB } from '../utils/database'
 import FAB from '../../src/components/FAB';
 import CreateGroupBottomSheet from '../../src/components/CreateGroupBottomSheet';
 import LocalStorage from '../utils/LocalStorage'
