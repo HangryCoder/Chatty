@@ -10,7 +10,7 @@ class FAB extends React.Component {
                 onPress={this.props.onPress} >
                 <Image
                     style={styles.icon}
-                    source={require('../../assets/icons/plus.png')} />
+                    source={require('../../../assets/icons/plus.png')} />
             </TouchableOpacity>
         );
     }

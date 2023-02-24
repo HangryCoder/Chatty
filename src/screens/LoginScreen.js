@@ -5,11 +5,11 @@ import {
     Text,
 } from 'react-native';
 //import auth from '@react-native-firebase/auth';
-import CustomButton from '../components/CustomButton';
-import CustomTextInput from '../components/CustomTextInput';
+import CustomButton from '../../src/components/CustomButton';
+import CustomTextInput from '../../src/components/CustomTextInput';
 import database from '@react-native-firebase/database';
-import { USERNAME, LOGIN, WELCOME_SUB_TITLE, WELCOME, USERNAME_KEY } from '../constants';
-import LocalStorage from '../localStorage'
+import { USERNAME, LOGIN, WELCOME_SUB_TITLE, WELCOME, USERNAME_KEY } from '../utils/constants';
+import LocalStorage from '../utils/LocalStorage'//'../src/utils/LocalStorage'
 
 class LoginScreen extends React.Component {
 
@@ -89,7 +89,7 @@ class LoginScreen extends React.Component {
             onChangeText={onChangeText}
             value={value}
             placeholder={placeholder}
-            icon={require('../assets/icons/search.png')} />)
+            icon={require('../../assets/icons/search.png')} />)
     }
 
     renderButton = (text, onPress) => {
