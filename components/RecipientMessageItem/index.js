@@ -11,7 +11,7 @@ class RecipientMessageItem extends React.Component {
             <View>
                 <Text style={styles.messageContainer}>{message}</Text>
                 <View style={styles.messageAuthorContainer}>
-                    <View style={styles.messageAuthorIcon}></View>
+                    <View style={[styles.messageAuthorIcon, { backgroundColor: color }]} />
                     <Text style={styles.messageAuthorName}>{author}</Text>
                 </View>
             </View>
