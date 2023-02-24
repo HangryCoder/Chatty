@@ -11,3 +11,6 @@ export const CREATE_NOW_GROUP_BUTTON = "Create Now"
 export const POST_MESSAGE_PLACEHOLDER = "Type something"
 export const POST_BUTTON = "Post"
 export const JOIN_GROUP = "Join Group"
+
+//Local Storage
+export const USERNAME_KEY = "username"

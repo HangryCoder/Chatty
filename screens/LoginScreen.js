@@ -8,8 +8,8 @@ import {
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import database from '@react-native-firebase/database';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { USERNAME, LOGIN, WELCOME_SUB_TITLE, WELCOME } from '../constants';
+import { USERNAME, LOGIN, WELCOME_SUB_TITLE, WELCOME, USERNAME_KEY } from '../constants';
+import LocalStorage from '../localStorage'
 
 class LoginScreen extends React.Component {
 
@@ -33,7 +33,7 @@ class LoginScreen extends React.Component {
 
     isUserLoggedIn = async () => {
         try {
-            const value = await AsyncStorage.getItem('username')
+            const value = await LocalStorage.get(USERNAME_KEY)
             if (value !== null) {
                 return true
             }
@@ -63,7 +63,6 @@ class LoginScreen extends React.Component {
             .ref(`/User/${username}`)
             .once('value')
             .then(snapshot => {
-                console.log('User data: ', snapshot.val());
                 const user = snapshot.val()
                 if (user) {
                     this.setUserAsLoggedIn()
@@ -76,15 +75,7 @@ class LoginScreen extends React.Component {
 
     setUserAsLoggedIn = () => {
         const { username } = this.state;
-        this.storeData('username', username)
-    }
-
-    storeData = async (key, value) => {
-        try {
-            await AsyncStorage.setItem(key, value)
-        } catch (e) {
-            console.log("Error in saving " + e)
-        }
+        LocalStorage.set(USERNAME_KEY, username)
     }
 
     inputText = (placeholder, onChangeText, value) => {
