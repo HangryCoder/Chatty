@@ -53,6 +53,7 @@ class ChatScreen extends React.Component {
                 }))
                 array.sort((a, b) => a.chat.createdAt - b.chat.createdAt)
                 this.setState({ chat: array })
+                //this.flatListRef.scrollToEnd({ animating: true });
             })
     }
 
@@ -76,6 +77,7 @@ class ChatScreen extends React.Component {
             .push(chat)
             .then(() => {
                 Keyboard.dismiss()
+                this.flatListRef.scrollToEnd({ animating: true });
                 this.setState({ message: '' })
             })
     }
@@ -125,6 +127,7 @@ class ChatScreen extends React.Component {
 
     renderChatList = () => {
         return <FlatList
+            ref={(ref) => this.flatListRef = ref}
             style={styles.chatList}
             ItemSeparatorComponent={this.renderItemSeparator()}
             data={this.state.chat}
