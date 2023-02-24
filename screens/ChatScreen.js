@@ -87,18 +87,18 @@ class ChatScreen extends React.Component {
         </View>)
     }
 
-    renderReceiverMessage = () => {
-        const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-        const chat = { message: text, color: '', author: 'Stephen' }
-        return <RecipientMessageItem chat={chat} />
-    }
+    // renderReceiverMessage = () => {
+    //     const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
+    //     const chat = { message: text, color: '', author: 'Stephen' }
+    //     return <RecipientMessageItem chat={chat} />
+    // }
 
-    renderSenderMessage = () => {
-        const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-        const chat = { message: text, color: '', author: 'Me' }
+    // renderSenderMessage = () => {
+    //     const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
+    //     const chat = { message: text, color: '', author: 'Me' }
 
-        return <SenderMessageItem chat={chat} />
-    }
+    //     return <SenderMessageItem chat={chat} />
+    // }
 
     renderItemSeparator = () => {
         return <View style={styles.itemSeparator} />
@@ -122,12 +122,7 @@ class ChatScreen extends React.Component {
     render = () => {
         return (
             <View style={styles.container}>
-                <View style={{
-                    flex: 1
-                }} />
                 {this.renderChatList()}
-                {/* {this.renderReceiverMessage()} */}
-                {/* {this.renderSenderMessage()} */}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
