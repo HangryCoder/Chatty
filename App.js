@@ -14,7 +14,6 @@ class App extends React.Component {
         return (
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="Login">
-                    <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
                     <Stack.Screen name="Home" component={HomeScreen}
                         options={{
@@ -32,6 +31,7 @@ class App extends React.Component {
                             // },
                         }}
                     />
+                    <Stack.Screen name="Chat" component={ChatScreen} options={{ headerShown: false }} />
                 </Stack.Navigator>
             </NavigationContainer>
         );

@@ -6,38 +6,7 @@ import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants'
 import RecipientMessageItem from '../components/RecipientMessageItem';
 import SenderMessageItem from '../components/SenderMessageItem';
 import database from '@react-native-firebase/database';
-import { CHAT_DB, MEMBERS_DB, MESSAGES_DB } from '../database'
-
-const color = 'rgb(' + (Math.floor(Math.random() * 256))
-    + ',' + (Math.floor(Math.random() * 256)) + ','
-    + (Math.floor(Math.random() * 256)) + ')';
-
-const chat = [
-    {
-        id: 1,
-        message: 'Hello',
-        author: 'Stephen',
-        color: color
-    },
-    {
-        id: 2,
-        message: 'How are you?',
-        author: 'Krupa',
-        color: color
-    },
-    {
-        id: 3,
-        message: 'Not bad. When are you coming to Goa?',
-        author: 'Stephen',
-        color: color
-    },
-    {
-        id: 4,
-        message: 'Hey! I am coming this month',
-        author: 'Sonia',
-        color: color
-    },
-]
+import { MEMBERS_DB, MESSAGES_DB } from '../database'
 
 class ChatScreen extends React.Component {
 
@@ -76,37 +45,25 @@ class ChatScreen extends React.Component {
                 if (!snapshot.val()) return
 
                 var array = []
-                Object.entries(snapshot.val()).map(val => array.push({
+                Object.entries(snapshot.val()).map(val => array.unshift({
                     id: val[0],
                     chat: val[1]
                 }))
+                array.sort((a, b) => a.chat.createdAt - b.chat.createdAt)
                 this.setState({ chat: array })
             })
     }
 
     postMessage = () => {
-        // const message = this.state.message
-        // let newMessage = {
-        //     id: 5,
-        //     message: message,
-        //     author: this.username,
-        //     color: color
-        // }
-
-        // let array = [...this.state.chat]
-        // array.push(newMessage)
-
-        // this.setState({ chat: array, message: '' })
-
-        // console.log(`Date().getUTCMilliseconds() ${Date.now()}`)
-        // return;
+        const { message } = this.state;
+        if (!message) return
 
         let color = 'rgb(' + (Math.floor(Math.random() * 256))
             + ',' + (Math.floor(Math.random() * 256)) + ','
             + (Math.floor(Math.random() * 256)) + ')';
 
-        let message = {
-            text: this.state.message,
+        let chat = {
+            text: message,
             author: this.username,
             color: color,
             createdAt: Date.now()
@@ -114,7 +71,7 @@ class ChatScreen extends React.Component {
 
         database()
             .ref(`${MESSAGES_DB}/${this.groupId}`)
-            .push(message)
+            .push(chat)
             .then(() => {
                 this.setState({ message: '' })
             })
@@ -187,8 +144,6 @@ class ChatScreen extends React.Component {
             <View style={styles.container}>
                 {this.renderChatList()}
                 {isJoined ? this.renderPostMessage() : this.renderJoinGroupButton()}
-                {/* {this.renderJoinGroupButton()} */}
-                {/* {this.renderPostMessage()} */}
             </View>
         );
     }

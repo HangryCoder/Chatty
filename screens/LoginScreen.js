@@ -34,8 +34,11 @@ class LoginScreen extends React.Component {
     isUserLoggedIn = async () => {
         try {
             const value = await LocalStorage.get(USERNAME_KEY)
+            //console.log(`value ${value}`)
             if (value !== null) {
                 return true
+            } else {
+                return false
             }
         } catch (e) {
             return false
