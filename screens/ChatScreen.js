@@ -45,12 +45,27 @@ class ChatScreen extends React.Component {
         super(props)
         this.state = {
             message: '',
-            chat: chat
+            chat: chat,
+            isJoined: false
         }
 
         const { groupId, username } = props.route.params
         this.groupId = groupId
         this.username = username
+    }
+
+    componentDidMount = () => {
+        this.checkIfUserAlreadyJoined()
+    }
+
+    checkIfUserAlreadyJoined = () => {
+        database()
+            .ref(`${MEMBERS_DB}/${this.groupId}`)
+            .once('value')
+            .then(snapshot => {
+                const isJoined = Object.keys(snapshot.val()).includes(this.username)
+                this.setState({ isJoined: isJoined })
+            }).catch((e) => console.log(`Error ${e}`));
     }
 
     postMessage = () => {
@@ -74,7 +89,7 @@ class ChatScreen extends React.Component {
             .update({
                 [this.username]: true
             }).then(() => {
-                console.log('User joined')
+                this.setState({ isJoined: true })
             })
     }
 
@@ -129,10 +144,12 @@ class ChatScreen extends React.Component {
     }
 
     render = () => {
+        const { isJoined } = this.state
         return (
             <View style={styles.container}>
                 {this.renderChatList()}
-                {this.renderJoinGroupButton()}
+                {isJoined ? this.renderPostMessage() : this.renderJoinGroupButton()}
+                {/* {this.renderJoinGroupButton()} */}
                 {/* {this.renderPostMessage()} */}
             </View>
         );
