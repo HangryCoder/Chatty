@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, FlatList, Text, TouchableOpacity, Image, Keyboard } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
@@ -75,6 +75,7 @@ class ChatScreen extends React.Component {
             .ref(`${MESSAGES_DB}/${this.groupId}`)
             .push(chat)
             .then(() => {
+                Keyboard.dismiss()
                 this.setState({ message: '' })
             })
     }
@@ -177,9 +178,7 @@ const styles = StyleSheet.create({
     },
     postMessageContainer: {
         flexDirection: 'row',
-        marginTop: 16,
-        paddingHorizontal: 16,
-        paddingBottom: 16
+        margin: 16,
     },
     postMessageInputContainer: {
         flex: 0.8,
@@ -196,7 +195,7 @@ const styles = StyleSheet.create({
         height: 16
     },
     chatList: {
-        padding: 16
+        padding: 16,
     },
     joinGroupButton: {
         margin: 16,
