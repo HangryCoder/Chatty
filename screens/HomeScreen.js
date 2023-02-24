@@ -7,7 +7,7 @@ import { CHAT_DB } from '../database'
 import FAB from '../components/FAB';
 import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
 import LocalStorage from '../localStorage'
-import { USERNAME_KEY } from '../constants';
+import { USERNAME_KEY, ALL_GROUPS } from '../constants';
 
 class HomeScreen extends React.Component {
 
@@ -145,19 +145,12 @@ class HomeScreen extends React.Component {
     }
 
     renderToolbar = () => {
-        return <View style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingBottom: 16
-        }}><Text style={{
-            fontFamily: 'poppins_semibold',
-            fontSize: 24,
-            flex: 1,
-        }}>All Groups</Text>
+        return <View style={styles.toolbarContainer}>
+            <Text style={styles.toolbarName}>{ALL_GROUPS}</Text>
             <TouchableOpacity onPress={this.logout}>
                 <Image
                     source={require('../assets/icons/log-out.png')}
-                    style={{ width: 24, height: 24 }}
+                    style={styles.logout}
                 />
             </TouchableOpacity>
         </View>
@@ -184,6 +177,20 @@ const styles = StyleSheet.create({
     },
     itemSeparator: {
         height: 12
+    },
+    toolbarContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingBottom: 16
+    },
+    toolbarName: {
+        fontFamily: 'poppins_semibold',
+        fontSize: 24,
+        flex: 1,
+    },
+    logout: {
+        width: 24,
+        height: 24
     }
 })
 
