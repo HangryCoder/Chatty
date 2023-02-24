@@ -29,7 +29,6 @@ class HomeScreen extends React.Component {
     getAllChats = () => {
         database()
             .ref(CHAT_DB)
-            .orderByValue()
             .on('value', snapshot => {
                 var array = []
                 Object.entries(snapshot.val()).map(val => array.unshift({
