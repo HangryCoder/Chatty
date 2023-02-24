@@ -3,7 +3,7 @@ import { StyleSheet, View, FlatList, Text } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import database from '@react-native-firebase/database';
-import { CHAT_DB } from './database'
+import { CHAT_DB } from '../database'
 import FAB from '../components/FAB';
 import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
 

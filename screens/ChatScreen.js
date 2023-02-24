@@ -1,18 +1,51 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
 import RecipientMessageItem from '../components/RecipientMessageItem';
 import SenderMessageItem from '../components/SenderMessageItem';
 
+const color = 'rgb(' + (Math.floor(Math.random() * 256))
+    + ',' + (Math.floor(Math.random() * 256)) + ','
+    + (Math.floor(Math.random() * 256)) + ')';
+
+const chat = [
+    {
+        id: 1,
+        message: 'Hello',
+        author: 'Stephen',
+        color: color
+    },
+    {
+        id: 2,
+        message: 'How are you?',
+        author: 'Krupa',
+        color: color
+    },
+    {
+        id: 3,
+        message: 'Not bad. When are you coming to Goa?',
+        author: 'Stephen',
+        color: color
+    },
+    {
+        id: 4,
+        message: 'Hey! I am coming this month',
+        author: 'Sonia',
+        color: color
+    },
+]
+
 class ChatScreen extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            message: ''
+            message: '',
+            chat: chat
         }
+        this.username = 'Sonia'
     }
 
     postMessage = () => {
@@ -66,16 +99,35 @@ class ChatScreen extends React.Component {
 
         return <SenderMessageItem chat={chat} />
     }
+
+    renderItemSeparator = () => {
+        return <View style={styles.itemSeparator} />
+    }
+
+    renderChatList = () => {
+        return <FlatList
+            ItemSeparatorComponent={this.renderItemSeparator()}
+            data={this.state.chat}
+            renderItem={({ item }) => {
+                if (item.author == this.username) {
+                    return <SenderMessageItem chat={item} />
+                } else {
+                    return <RecipientMessageItem chat={item} />
+                }
+            }}
+            keyExtractor={item => item.id}
+        />
+    }
+
     render = () => {
         return (
             <View style={styles.container}>
                 <View style={{
-                    backgroundColor: 'red',
                     flex: 1
                 }} />
-
+                {this.renderChatList()}
                 {/* {this.renderReceiverMessage()} */}
-                {this.renderSenderMessage()}
+                {/* {this.renderSenderMessage()} */}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
@@ -104,6 +156,9 @@ const styles = StyleSheet.create({
     },
     postMessageButton: {
         flex: 0.2,
+    },
+    itemSeparator: {
+        height: 16
     }
 })
 
