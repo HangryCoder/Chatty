@@ -6,10 +6,10 @@ class SenderMessageItem extends React.Component {
 
     render = () => {
         const { chat } = this.props
-        const { message, color, author } = chat
+        const { text, color, author } = chat
         return (
             <View>
-                <Text style={styles.messageContainer}>{message}</Text>
+                <Text style={styles.messageContainer}>{text}</Text>
                 <View style={styles.messageAuthorContainer}>
                     <Text style={styles.messageAuthorName}>{author}</Text>
                     <View style={[styles.messageAuthorIcon, { backgroundColor: color }]} />
