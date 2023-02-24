@@ -11,7 +11,7 @@ class SenderMessageItem extends React.Component {
             <View>
                 <Text style={styles.messageContainer}>{text}</Text>
                 <View style={styles.messageAuthorContainer}>
-                    <Text style={styles.messageAuthorName}>{author}</Text>
+                    <Text style={styles.messageAuthorName}>Me</Text>
                     <View style={[styles.messageAuthorIcon, { backgroundColor: color }]} />
                 </View>
             </View>
