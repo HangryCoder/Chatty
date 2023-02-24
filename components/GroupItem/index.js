@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, Image, Text } from 'react-native'
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native'
 
 class GroupItem extends React.Component {
 
@@ -30,17 +30,18 @@ class GroupItem extends React.Component {
 
     render = () => {
         return (
-            <View style={styles.container}>
+            <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
                 {this.renderImage()}
                 {this.renderTitleAndMembers()}
                 {this.renderArrowIcon()}
-            </View>
+            </TouchableOpacity>
         );
     }
 }
 
 GroupItem.propTypes = {
-    group: PropTypes.object
+    group: PropTypes.object,
+    onPress: PropTypes.func
 }
 
 const styles = StyleSheet.create({

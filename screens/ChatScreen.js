@@ -46,6 +46,9 @@ class ChatScreen extends React.Component {
             chat: chat
         }
         this.username = 'Sonia'
+
+        const { groupId } = props.route.params
+        this.groupId = groupId
     }
 
     postMessage = () => {

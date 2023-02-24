@@ -91,11 +91,18 @@ class HomeScreen extends React.Component {
         return <View style={styles.itemSeparator} />
     }
 
+    goToChatScreen = (item) => {
+        const { navigation } = this.props;
+        navigation.navigate("Chat", {
+            groupId: item.id
+        })
+    }
+
     renderGroupList = () => {
         return <FlatList
             ItemSeparatorComponent={this.renderItemSeparator()}
             data={this.state.filteredData}
-            renderItem={({ item }) => <GroupItem group={item.chat} />}
+            renderItem={({ item }) => <GroupItem group={item.chat} onPress={() => this.goToChatScreen(item)} />}
             keyExtractor={item => item.id}
         />
     }
@@ -126,7 +133,7 @@ class HomeScreen extends React.Component {
     render = () => {
         return (
             <View style={styles.container}>
-                {/* {this.renderToolbar()} */}
+                {this.renderToolbar()}
                 {this.renderSearchBar()}
                 {this.renderGroupList()}
                 {this.renderCreateGroupButton()}
