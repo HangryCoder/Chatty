@@ -56,7 +56,7 @@ class ChatScreen extends React.Component {
         let newMessage = {
             id: 5,
             message: message,
-            author: 'Sonia',
+            author: this.username,
             color: color
         }
 
