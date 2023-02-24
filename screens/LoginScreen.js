@@ -62,6 +62,7 @@ class LoginScreen extends React.Component {
 
     handleLogin = () => {
         const { username } = this.state;
+        if (!username) return
 
         database()
             .ref(`/User/${username}`)
