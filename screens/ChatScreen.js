@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
 import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON } from '../constants';
+import RecipientMessageItem from '../components/RecipientMessageItem';
 
 class ChatScreen extends React.Component {
 
@@ -54,37 +55,8 @@ class ChatScreen extends React.Component {
 
     renderReceiverMessage = () => {
         const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-
-        return (<View>
-            <Text style={{
-                backgroundColor: '#1C1C1C',
-                borderTopLeftRadius: 16,
-                borderTopRightRadius: 16,
-                borderBottomRightRadius: 16,
-                borderBottomLeftRadius: 0,
-                padding: 16,
-                fontFamily: 'poppins_regular',
-                fontSize: 14,
-                color: '#A1A1A1'
-            }}>{text}</Text>
-            <View style={{
-                flexDirection: 'row',
-                marginTop: 8
-            }}>
-                <View style={{
-                    width: 24,
-                    height: 24,
-                    backgroundColor: 'yellow',
-                    borderRadius: 24,
-                    marginEnd: 8
-                }}></View>
-                <Text style={{
-                    fontFamily: 'poppins_regular',
-                    fontSize: 14,
-                    color: '#E4E4E4'
-                }}>Stephen</Text>
-            </View>
-        </View>)
+        const chat = { message: text, color: '', author: 'Stephen' }
+        return <RecipientMessageItem chat={chat} />
     }
 
     renderSenderMessage = () => {
@@ -130,8 +102,8 @@ class ChatScreen extends React.Component {
                     flex: 1
                 }} />
 
-                {/* {this.renderReceiverMessage()} */}
-                {this.renderSenderMessage()}
+                {this.renderReceiverMessage()}
+                {/* {this.renderSenderMessage()} */}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>

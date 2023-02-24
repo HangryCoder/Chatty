@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 class RecipientMessageItem extends React.Component {
 
     render = () => {
-        const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
-
+        const { chat } = this.props
+        const { message, color, author } = chat
         return (
             <View>
-                <Text style={styles.messageContainer}>{text}</Text>
+                <Text style={styles.messageContainer}>{message}</Text>
                 <View style={styles.messageAuthorContainer}>
                     <View style={styles.messageAuthorIcon}></View>
-                    <Text style={styles.messageAuthorName}>Stephen</Text>
+                    <Text style={styles.messageAuthorName}>{author}</Text>
                 </View>
             </View>
         );
@@ -20,7 +20,7 @@ class RecipientMessageItem extends React.Component {
 }
 
 RecipientMessageItem.propTypes = {
-    message: PropTypes.object
+    chat: PropTypes.object
 }
 
 const styles = StyleSheet.create({
