@@ -2,8 +2,9 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import CustomTextInput from '../components/CustomTextInput';
-import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON } from '../constants';
+import { POST_MESSAGE_PLACEHOLDER, POST_BUTTON, JOIN_GROUP } from '../constants';
 import RecipientMessageItem from '../components/RecipientMessageItem';
+import SenderMessageItem from '../components/SenderMessageItem';
 
 class ChatScreen extends React.Component {
 
@@ -28,7 +29,7 @@ class ChatScreen extends React.Component {
 
     renderJoinGroupButton = () => {
         return <CustomButton
-            text={'Join Group'}
+            text={JOIN_GROUP}
             onPress={this.joinGroup}
             style={{
                 marginTop: 16,
@@ -61,38 +62,9 @@ class ChatScreen extends React.Component {
 
     renderSenderMessage = () => {
         const text = "Wednesday Addams is sent to Nevermore Academy, a bizarre boarding school where she attempts to master her psychic powers, stop a monstrous killing spree."
+        const chat = { message: text, color: '', author: 'Me' }
 
-        return (<View>
-            <Text style={{
-                backgroundColor: '#E6F5FB',
-                borderTopLeftRadius: 16,
-                borderTopRightRadius: 16,
-                borderBottomRightRadius: 0,
-                borderBottomLeftRadius: 16,
-                padding: 16,
-                fontFamily: 'poppins_regular',
-                fontSize: 14,
-                color: '#2A2A2A'
-            }}>{text}</Text>
-            <View style={{
-                flexDirection: 'row',
-                marginTop: 8,
-                justifyContent: 'flex-end'
-            }}>
-                <Text style={{
-                    fontFamily: 'poppins_regular',
-                    fontSize: 14,
-                    color: '#E4E4E4'
-                }}>Me</Text>
-                <View style={{
-                    width: 24,
-                    height: 24,
-                    backgroundColor: 'yellow',
-                    borderRadius: 24,
-                    marginStart: 8
-                }}></View>
-            </View>
-        </View>)
+        return <SenderMessageItem chat={chat} />
     }
     render = () => {
         return (
@@ -102,8 +74,8 @@ class ChatScreen extends React.Component {
                     flex: 1
                 }} />
 
-                {this.renderReceiverMessage()}
-                {/* {this.renderSenderMessage()} */}
+                {/* {this.renderReceiverMessage()} */}
+                {this.renderSenderMessage()}
                 {/* {this.renderJoinGroupButton()} */}
                 {this.renderPostMessage()}
             </View>
