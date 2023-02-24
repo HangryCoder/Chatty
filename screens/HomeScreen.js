@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, FlatList, Text } from 'react-native';
+import { StyleSheet, View, FlatList, Text, Image, TouchableOpacity } from 'react-native';
 import GroupItem from '../components/GroupItem';
 import SearchBar from '../components/SearchBar';
 import database from '@react-native-firebase/database';
@@ -138,12 +138,29 @@ class HomeScreen extends React.Component {
         />
     }
 
+    logout = () => {
+        const { navigation } = this.props
+        LocalStorage.clearAll()
+        navigation.replace("Login")
+    }
+
     renderToolbar = () => {
-        return <Text style={{
+        return <View style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingBottom: 16
+        }}><Text style={{
             fontFamily: 'poppins_semibold',
             fontSize: 24,
-            paddingBottom: 16
+            flex: 1,
         }}>All Groups</Text>
+            <TouchableOpacity onPress={this.logout}>
+                <Image
+                    source={require('../assets/icons/log-out.png')}
+                    style={{ width: 24, height: 24 }}
+                />
+            </TouchableOpacity>
+        </View>
     }
 
     render = () => {

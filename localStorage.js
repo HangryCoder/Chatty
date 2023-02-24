@@ -18,6 +18,14 @@ class LocalStorage {
             return null
         }
     }
+
+    clearAll = async () => {
+        try {
+            await AsyncStorage.clear()
+        } catch (e) {
+            console.log("Error " + e)
+        }
+    }
 }
 
 export default new LocalStorage()

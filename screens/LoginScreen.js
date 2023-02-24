@@ -21,9 +21,11 @@ class LoginScreen extends React.Component {
     }
 
     componentDidMount = () => {
-        if (this.isUserLoggedIn()) {
-            this.goToHomeScreen()
-        }
+        this.isUserLoggedIn().then((isLoggedIn) => {
+            if (isLoggedIn) {
+                this.goToHomeScreen()
+            }
+        })
     }
 
     goToHomeScreen = () => {
@@ -34,7 +36,6 @@ class LoginScreen extends React.Component {
     isUserLoggedIn = async () => {
         try {
             const value = await LocalStorage.get(USERNAME_KEY)
-            //console.log(`value ${value}`)
             if (value !== null) {
                 return true
             } else {
