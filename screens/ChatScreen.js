@@ -95,9 +95,7 @@ class ChatScreen extends React.Component {
         return <CustomButton
             text={JOIN_GROUP}
             onPress={this.joinGroup}
-            style={{
-                marginTop: 16,
-            }}
+            style={styles.joinGroupButton}
         />
     }
 
@@ -139,6 +137,11 @@ class ChatScreen extends React.Component {
         />
     }
 
+    onBackPress = () => {
+        const { navigation } = this.props;
+        navigation.goBack();
+    }
+
     renderToolbar = () => {
         return <View style={{
             flexDirection: 'row',
@@ -146,7 +149,7 @@ class ChatScreen extends React.Component {
             backgroundColor: '#232323',
             padding: 16,
         }}>
-            <TouchableOpacity onPress={this.logout}>
+            <TouchableOpacity onPress={this.onBackPress}>
                 <Image
                     source={require('../assets/icons/left-arrow.png')}
                     style={{ width: 24, height: 24, marginRight: 8 }}
@@ -188,6 +191,8 @@ const styles = StyleSheet.create({
     postMessageContainer: {
         flexDirection: 'row',
         marginTop: 16,
+        paddingHorizontal: 16,
+        paddingBottom: 16
     },
     postMessageInputContainer: {
         flex: 0.8,
@@ -205,6 +210,9 @@ const styles = StyleSheet.create({
     },
     chatList: {
         padding: 16
+    },
+    joinGroupButton: {
+        margin: 16,
     }
 })
 
