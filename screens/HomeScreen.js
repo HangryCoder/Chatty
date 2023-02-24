@@ -6,6 +6,8 @@ import database from '@react-native-firebase/database';
 import { CHAT_DB } from '../database'
 import FAB from '../components/FAB';
 import CreateGroupBottomSheet from '../components/CreateGroupBottomSheet';
+import LocalStorage from '../localStorage'
+import { USERNAME_KEY } from '../constants';
 
 class HomeScreen extends React.Component {
 
@@ -91,11 +93,25 @@ class HomeScreen extends React.Component {
         return <View style={styles.itemSeparator} />
     }
 
+    getUsername = async () => {
+        try {
+            const value = await LocalStorage.get(USERNAME_KEY)
+            if (value !== null) {
+                return value
+            }
+        } catch (e) {
+            return null
+        }
+    }
+
     goToChatScreen = (item) => {
         const { navigation } = this.props;
-        navigation.navigate("Chat", {
-            groupId: item.id
-        })
+        this.getUsername().then((username) =>
+            navigation.navigate("Chat", {
+                groupId: item.id,
+                username: username
+            })
+        )
     }
 
     renderGroupList = () => {
